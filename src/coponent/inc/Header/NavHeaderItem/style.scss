@@ -1,0 +1,29 @@
+.item{
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+background-color: var(--c_green_default);
+border-radius: 8px;
+padding: 2px 5px;
+color: #fff;
+
+
+
+    
+}
+.item_icon{
+   width: 100%;  
+   text-align: center;
+   font-size: 7px;
+
+   
+
+
+
+}
+.item_title{
+    font-size: 1.2rem;
+    margin-top: 2px;
+
+}

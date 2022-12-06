@@ -1,0 +1,35 @@
+.header-wrapper{
+    width: 100%;
+    
+
+    .header-main{
+        width: var(--w_main-layout);
+        color: #ffff;
+        
+        margin: 0 auto;
+        height: 56px;
+        max-height: 56px;
+        display: flex;
+        justify-content: space-between;
+         align-items: center;
+
+        .header-logo{
+           width: 205px;
+           img{
+            width: 100%;
+            height: 40px;
+            object-fit: cover;
+           
+            
+           }
+            
+        }
+        .header-search{
+            width: 496px;
+        }
+        .header-nav{
+            width: 448px;
+        }
+
+    }
+}
