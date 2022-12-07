@@ -1,0 +1,35 @@
+.btn{
+
+
+
+
+&-wrapper{      
+    padding: 4px 13px;
+     background-image: linear-gradient(#00917a,var(--c_green_default));
+    border-radius: 10px;
+    font-size:2.6rem;
+    
+    
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+ 
+    
+    
+  }
+
+   &--red{
+    background-image: linear-gradient(var(--c_red-default),var(--c_red-default));
+   }
+   &--yellow{
+    background-image: linear-gradient(var( --c_yellow_default),var( --c_yellow_default));
+   }
+   &--disabled{
+    background-image: linear-gradient(grey,grey);
+    color: gainsboro;
+    cursor: none;
+   }
+
+}

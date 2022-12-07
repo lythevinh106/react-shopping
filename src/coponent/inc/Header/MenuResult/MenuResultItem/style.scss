@@ -1,0 +1,55 @@
+.menu-result-item{
+
+    display: flex;
+    align-items: center;
+
+  &:hover{
+    background-color: #f0f0f0ec;
+  }  
+
+  
+.img{
+
+
+
+ img{
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    
+
+ }
+
+
+
+}
+
+
+
+.info{
+    display: flex;
+    flex: 1;
+  justify-content: space-between;
+  flex-direction: column;
+ 
+  
+
+     &__desc{
+    
+  
+        font-size: 1.3rem;
+        font-weight: 500;
+     }
+
+     &__price{
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: var(--c_red-default);
+
+
+     }
+   
+}
+}
+
+

@@ -3,10 +3,16 @@
 display: flex;
 flex-direction: column;
 justify-content: center;
+flex-wrap: wrap;
 background-color: var(--c_green_default);
 border-radius: 8px;
-padding: 2px 5px;
+padding: 4px 10px;
+cursor: pointer;
 color: #fff;
+ &:not(:nth-last-child(1)){
+    margin-right: 10px;
+  
+ }
 
 
 
@@ -15,7 +21,7 @@ color: #fff;
 .item_icon{
    width: 100%;  
    text-align: center;
-   font-size: 7px;
+   font-size: 0.7rem;
 
    
 

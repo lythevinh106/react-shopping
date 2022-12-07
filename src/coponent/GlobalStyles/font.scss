@@ -1,13 +1,6 @@
 
 
- :root{
---font-main:"font-main";
---font-first:"font-first";
---font-first-i:"font-first-italic";
---font-second:"font-second";
---font-third:"font-third";
 
- }
 
 
 
@@ -16,25 +9,25 @@
 @font-face{
 
     src: url("font/Sansita_Swashed/SansitaSwashed-VariableFont_wght.ttf");
-    font-family:--font-main ;  
+    font-family:"font1" ;  
   
 }
 @font-face{
 
     src: url("./font/Playfair_Display/PlayfairDisplay-Italic-VariableFont_wght.ttf");
-    font-family:--font-first-i ;  
+    font-family:"font2" ;  
   
 }
 @font-face{
 
     src: url("./font/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf");
-    font-family:--font-first ;  
+    font-family:"font3" ;  
   
 }
 @font-face{
 
     src: url("font/Dancing_Script/DancingScript-VariableFont_wght.ttf");
-    font-family:--font-second ;  
+    font-family:"font4" ;  
     
   
 }
@@ -44,9 +37,30 @@
 @font-face{
 
     src: url("font/Lobster/Lobster-Regular.ttf");
-    font-family:--font-third ;  
+    font-family:"font5" ;  
     
   
 }
 
+@font-face{
+
+    src: url("font/Nerko_One/NerkoOne-Regular.ttf");
+    font-family:"font6" ;  
+    
+  
+}
+@font-face{
+
+    src: url("font/Rubik/Rubik-VariableFont_wght.ttf");
+    font-family:"font7" ;  
+    
+  
+}
+@font-face{
+
+    src: url("font/Fredoka_One/FredokaOne-Regular.ttf");
+    font-family:"font8" ;  
+    
+  
+}
 
