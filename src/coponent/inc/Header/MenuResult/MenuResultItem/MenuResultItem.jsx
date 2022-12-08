@@ -1,23 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import "./style.scss"
+import Image from '../../../../Image/Image';
+import { baseUrl } from '../../../../../constanst/UrlContanst';
 MenuResultItem.propTypes = {
 
 };
 
-function MenuResultItem(props) {
+function MenuResultItem({ product, onClick }) {
     return (
-        <li className='menu-result-item'>
+        <li className='menu-result-item' onClick={() => {
+
+            onClick(product);
+        }
+        }>
             <div className="img">
-                <img src="https://hoanghamobile.com/productlist/dst/Uploads/2022/01/04/s21-fe-12.png" alt="" />
+
+                <Image className="img_inner" src={`${baseUrl}${product?.thumbnail?.formats?.thumbnail?.url}`} alt="" />
             </div>
             <div className="info">
                 <p className="info__desc">
-                    Màn hình AOC CQ27G2/74 27inch/QHD/VA/144Hz/1ms/250nits/HDMI+DP/Freesync/Cong
+                    {product.name}
                 </p>
 
                 <div className="info__price">
-                    7,990,000 ₫
+
+
+                    {new Intl.NumberFormat('vi', { style: 'currency', currency: 'VND' }).format(product.salePrice)}
                 </div>
             </div>
         </li>

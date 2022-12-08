@@ -4,12 +4,13 @@
 
     .header-main{
         width: var(--w_main-layout);
-        color: #ffff;
+        color: var(--c_white-default);
         
         margin: 0 auto;
         height: 56px;
         max-height: 56px;
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
          align-items: center;
 
@@ -24,8 +25,19 @@
            }
             
         }
-       
+
+        
+        .header-cat{
+            width: 100%;
+            margin-top: 20px;
+            background-color: var( --c_green_default);
+            border-radius: 5px;
+            box-shadow: 0 4px 6px #ccc;
+        }
        
 
     }
+
+
+ 
 }
