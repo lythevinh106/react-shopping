@@ -1,0 +1,31 @@
+
+:root{
+    --spacing-item:20px
+}
+.sub-banner-wrapper{
+
+ 
+
+    display: flex;
+    justify-content: space-between;
+    margin:0px  calc( var(--spacing-item) * (-1));
+    padding:0px 20px;
+  
+    .sub-banner__img{
+       
+        height: 154px;
+        width: 100%;
+     
+        background: transparent !important;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+          
+        }
+
+    }
+
+   
+}

@@ -10,6 +10,7 @@ import CatHeader from './CatHeader/CatHeader';
 
 
 
+
 Header.propTypes = {
 
 };
@@ -25,7 +26,11 @@ function Header(props) {
                     <img src={logo} alt="" />
 
                 </div>
+
+
                 <SearchInput />
+
+
 
                 <NavHeader />
 

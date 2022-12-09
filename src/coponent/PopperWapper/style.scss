@@ -1,0 +1,10 @@
+.popper-wrapper {
+ 
+  box-shadow:0 4px 6px #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.popper-wrapper.big-shadow{
+  box-shadow: 0 20px 13px #ccc;
+}

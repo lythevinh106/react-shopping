@@ -8,6 +8,7 @@ import { Popover, Spin, Tooltip } from 'antd';
 
 import MenuResult from '../MenuResult/MenuResult';
 import ApiProduct from '../../../../ApiService/ApiProduct';
+import PopperWrapper from '../../../PopperWapper/PopperWrapper';
 
 
 
@@ -96,42 +97,51 @@ function SearchInput(props) {
 
 
             <span className="header-search__input">
+                <PopperWrapper>
+                    <Popover
 
-                <Popover
+                        overlayClassName='header-search__result'
+                        content={() => {
 
-                    overlayClassName='header-search__result'
-                    content={() => {
-
-                        return (
-
-
-                            <MenuResult input={InputRef} products={searchResult} />
+                            return (
 
 
 
+                                <MenuResult input={InputRef} products={searchResult} />
 
 
 
-                        )
 
-                    }}
 
-                    trigger="click"
-                    open={opentResult}
-                // open={open}
-                // onOpenChange={handleOpenChange}
-                >
-                    <input ref={InputRef} placeholder='Hôm nay bạn cần tìm gì?'
 
-                        onChange={(e) => {
-                            handleOnChange(e.target.value)
+
+                            )
+
                         }}
 
+                        trigger="click"
+                        open={opentResult}
+                    // open={open}
+                    // onOpenChange={handleOpenChange}
+                    >
 
-                    />
 
 
-                </Popover>
+                        <input ref={InputRef} placeholder='Hôm nay bạn cần tìm gì?'
+
+                            onChange={(e) => {
+                                handleOnChange(e.target.value)
+                            }}
+
+
+                        />
+
+
+
+
+
+                    </Popover>
+                </PopperWrapper>
 
 
 
@@ -145,11 +155,15 @@ function SearchInput(props) {
 
 
 
+            <PopperWrapper>
+
+                <Button >
+                    <SearchOutlined />
+                </Button>
+
+            </PopperWrapper>
 
 
-            <Button >
-                <SearchOutlined />
-            </Button>
             <Spin spinning={loadSpin} className='header-search__spin' />
 
 

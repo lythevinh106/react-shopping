@@ -10,10 +10,11 @@ padding: 4px 10px;
 align-items: center;
 cursor: pointer;
 color:var( --c_white_default);
- &:not(:nth-last-child(1)){
-    margin-right: 10px;
+
+//  &:not(:nth-last-child(1)){
+//     margin-right: 10px;
   
- }
+//  }
 
 
 

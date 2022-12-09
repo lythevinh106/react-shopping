@@ -4,6 +4,7 @@ import "./style.scss"
 import { ShoppingCartOutlined, UserOutlined } from '@ant-design/icons';
 
 import NavHeaderItem from '../NavHeaderItem/NavHeaderItem';
+import PopperWrapper from '../../../PopperWapper/PopperWrapper';
 NavHeader.propTypes = {
 
 };
@@ -15,8 +16,17 @@ function NavHeader(props) {
     }
     return (
         <ul className="header-nav">
-            <NavHeaderItem icon={<UserOutlined />} title="Thông Tin" onClick={handleClick} />
-            <NavHeaderItem icon={<ShoppingCartOutlined />} title="Giỏ Hàng" />
+
+            <div className="header-nav__item">
+                <PopperWrapper>    <NavHeaderItem icon={<UserOutlined />} title="Thông Tin" onClick={handleClick} /></PopperWrapper>
+
+            </div>
+            <div className="header-nav__item">
+                <PopperWrapper> <NavHeaderItem icon={<ShoppingCartOutlined />} title="Giỏ Hàng" /></PopperWrapper>
+
+            </div>
+
+
 
 
 

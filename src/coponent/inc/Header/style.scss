@@ -7,8 +7,8 @@
         color: var(--c_white-default);
         
         margin: 0 auto;
-        height: 56px;
-        max-height: 56px;
+        // height: 56px;
+     min-height: 56px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
