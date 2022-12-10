@@ -5,9 +5,38 @@ import AxiosClient from "./AxiosClient"
 
 const ApiProduct={
       
-     getAllProduct(){
+   async getAllProduct(newsParam){
 
-        return AxiosClient.get('/products');
+
+
+    const productList= await AxiosClient.get("/products",{
+     params:{
+      ...newsParam
+     }
+
+    });
+    
+    
+    
+    return {
+      data:productList,
+
+    }
+    
+   
+        
+      
+
+      //   return AxiosClient.get(`/products?_start`,{
+
+      //    params:{
+           
+
+      //    }
+      //   }
+        
+        
+      //   );
 
      },
      getProduct(productId){

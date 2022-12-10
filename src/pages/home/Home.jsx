@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import SliderImage from '../../coponent/SliderImage/SliderImage';
 import "./style.scss";
 import SubBanner from '../../coponent/SubBanner/SubBanner';
 import Product from '../../coponent/Product/Product';
+import ApiProduct from '../../ApiService/ApiProduct';
 
 Home.propTypes = {
 
@@ -76,7 +77,17 @@ const ListSubBanner = [
 
 
 
+
+
+
+
+
+
+
 function Home(props) {
+
+
+
     return (
         <div className='home-wrapper'>
 
@@ -93,7 +104,8 @@ function Home(props) {
             <div className="home__product">
 
 
-                <Product products />
+                <Product headerTitle="TỔNG HỢP SẢN PHẨM " />
+                {/* <Product headerTitle="SẢN PHẨM BÁN CHẠY" products={productsData} /> */}
             </div>
 
 

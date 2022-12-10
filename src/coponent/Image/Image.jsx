@@ -8,7 +8,7 @@ Image.propTypes = {
 function Image({ src, alt, ...props }) {
 
     const [ImageErr, setImageErr] = useState("");
-    console.log(src);
+    // console.log(src);
 
 
     const handleError = () => {

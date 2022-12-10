@@ -5,83 +5,38 @@
 
 
 .product-wrapper{
-display: flex;
-flex-wrap: wrap;
+   padding: 20px 0;
 
- justify-content: flex-start;
- margin:0px calc(var(--spacing-product-item) * (-1));
+   .product-header{
+ font-family: "font3";
+ font-weight: bold;
+ margin-bottom: 20px;
+background-color: var(--c_green_second);
+color: var(--c_white_default);
+padding: 5px 0px 5px 0px;
 
-}
-.product-item-wrapper{
-  
-
-//  width: 20%;
-margin: var(--spacing-product-item);
- width: calc(20% - (var(--spacing-product-item)*2));
-
- 
-   .product-item{
-    background-color: var(--c_white_default);
-    border: 1px solid;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 20px;
-  
-
-
-       &__img{
-        margin-top: 5px;
-        height: 205px;
-        width: 150px;
-    
-      
-          
-       }
-
-
-       &__title{
-        margin: 5px 0;
-        font-family: "font6" ;
-        color: var(--c_red-default);
-        font-weight: 100;
-        max-height: 60px;
-        font-size: 1.8rem;
-        line-height: 1.8rem;
-        text-align: center;
-
-           
-       }
-
-       &__price{
-        text-align: center;
-        margin-top: 10px;
-             font-family: "font1" ;
-             width: 100%;
-             display: flex;
-             justify-content: space-around;
-             
-            padding: 0 30px;
-
-        .price--old{
-            flex: 1;
-            font-size: 1.2rem;
-      text-decoration: line-through;
-
-
-        }
-
-        
-        .price--new{
-            flex: 1;
-            font-size: 1.4rem;
-            color: var(--c_red-default);
-
-        }
-         
-       }
-
+text-align: center;
+width: 30%;
    }
-   
 
+   .product-main{
+    
+    display: flex;
+    flex-wrap: wrap;
+    
+     justify-content: flex-start;
+     margin:0px calc(var(--spacing-product-item) * (-1));
+    
+    }
+
+    .product__load-more{
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+
+    }
+    
 }
+
+

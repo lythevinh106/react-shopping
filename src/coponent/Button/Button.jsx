@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import cln from "classnames"
 import "./style.scss"
@@ -6,7 +6,7 @@ Button.propTypes = {
 
 };
 
-function Button({ children, className, btnRed = false, btnYellow = false, disabled = false }) {
+function Button({ onClick = () => { }, children, className, btnWhite = false, btnRed = false, btnYellow = false, disabled = false, SizeNormal = false, sizeSmall = false }) {
 
 
     const classes = cln(
@@ -14,7 +14,12 @@ function Button({ children, className, btnRed = false, btnYellow = false, disabl
 
         "btn--red": btnRed,
         "btn--yellow": btnYellow,
+        "btn--white": btnWhite,
         "btn--disabled": disabled,
+        "btn--size-normal": SizeNormal,
+        "btn--size-small": sizeSmall,
+
+        // "btn--with-icon": withIcon ? true : false,
 
 
 
@@ -25,9 +30,13 @@ function Button({ children, className, btnRed = false, btnYellow = false, disabl
 
     )
 
+    const handelOnClick = () => {
+        onClick();
+    }
+
 
     return (
-        <button className={classes}>
+        <button className={classes} onClick={handelOnClick}>
             <span>
                 {children}
             </span>

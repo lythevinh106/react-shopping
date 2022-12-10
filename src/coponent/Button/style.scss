@@ -5,25 +5,62 @@
 
 &-wrapper{      
     padding: 4px 13px;
-     background-image: linear-gradient(#00917a,var(--c_green_default));
+     background-image: linear-gradient( );
     border-radius: 10px;
     font-size:2.6rem;
     
     
-    color: var(--c_white-default);
+    color: var( --c_white_default);
     display: flex;
     justify-content: center;
     align-items: center;
 
     height: 100%;
+   
+  
+    
+   
+    
     
  
     
     
   }
 
+
+ 
+  &--white{
+    background: transparent;
+    border :1px solid var(--c_green_default);
+    &:hover{
+
+      background-color:var(--c_green_default) ;
+    }
+
+    &:hover span{
+      color: var( --c_white_default); 
+    }
+    span{
+
+      color: var( --c_green_default);
+      
+   
+    
+
+    }
+
+
+  }
+
    &--red{
-    background-image: linear-gradient(var(--c_red-default),var(--c_red-default));
+    background:#fd475a;
+
+    span{
+
+      color: var( --c_white_default);
+    }
+    
+    
    }
    &--yellow{
     background-image: linear-gradient(var( --c_yellow_default),var( --c_yellow_default));
@@ -34,4 +71,37 @@
     cursor: none;
    }
 
+ 
+
+ 
+
+   &--size-small{
+    span{
+      font-size: 1.2rem;
+    }
 }
+
+&--size-normal{
+  span{
+    font-size: 1.4rem;
+
+  }
+}
+
+&--with-icon{
+
+  
+
+}
+
+
+
+
+
+
+
+
+
+}
+
+

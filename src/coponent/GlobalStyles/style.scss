@@ -8,12 +8,15 @@
 
 
 :root{
+  --b-white:#f4f4f4;
    --font-size-defalt:1.6rem;
    --c_red-default:#f00;
    --c_green_default:#00483d;
    --c_green_second:#00917a;
    --c_yellow_default:#f7941e;
    --c_white_default:#fff;
+
+   --c_black_default:#000;
 
 
    --w_main-layout:87%;
@@ -51,9 +54,14 @@
 
  body{
    width: 100%;
+   background-color: var( --b-white);
+   
  }
 
+// #root{
+//   background-color: var(--b-white);
 
+// }
 
  input,button{
    outline: none;
