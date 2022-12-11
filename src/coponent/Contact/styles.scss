@@ -1,0 +1,50 @@
+.contact-wrapper{
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+
+    .contact__icon{
+       width: 143px;
+       height: auto;
+
+        
+    }
+    .contact__subscribe{
+        text-align: center;
+        
+        &__title{
+            margin: 5px 0;
+            font-size: 1.9rem;
+            font-family: "font2";
+            font-weight: bold;
+          
+        }
+        &__des{
+            font-family: "font2";
+            margin: 5px 0;
+        }
+
+ 
+       
+    }
+ 
+        
+    
+    .contact__form{
+         display: flex;
+     
+        .contact__form__input{
+       
+            border: 1px solid;
+        
+        }
+        .contact__form__btn{
+            
+        
+            
+        }
+
+    }
+
+    
+}

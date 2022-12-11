@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import "./style.scss"
 
@@ -14,21 +14,103 @@ Product.propTypes = {
 function Product({ TypeProducts = null, headerTitle }) {
 
 
-    const [offSetHeight, setOffSetHeight] = useState(0)
-
-
+    const [offSetHeight, setOffSetHeight] = useState(window.scrollY)
     const [products, setProducts] = useState([]);
+
 
     const [loadMore, SetLoadMore] = useState({
 
         _start: 0,
-        _limit: 15
+        _limit: 30
 
     });
+    const [isScroll, setIsScroll] = useState(false);
+    useEffect(() => {
+
+        const handleScroll = () => {
+
+
+            setOffSetHeight(window.scrollY);
+
+
+        }
+
+        window.addEventListener("scroll", handleScroll);
+
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        }
+    }, [])
+
+
+
+
+    let dem = useRef(0);
+
+    useEffect(() => {
+
+
+        if (products.length < 0) {
+            return
+        }
+
+
+        try {
+            const getAllProduct = (async () => {
+                const response = await ApiProduct.getAllProduct(loadMore);
+
+                setProducts(response.data.data);
+                console.log("ham chinh")
+                if (dem.current > 0) {
+                    setIsScroll(true);
+                }
+            })();
+        } catch (error) {
+
+        }
+
+        return () => {
+
+            // setIsScroll(true);
+            dem.current++
+        }
+
+
+
+
+    }, [loadMore]);
+
+
+    useEffect(() => {
+
+        if (isScroll === false) return;
+
+        console.log("day la scroll")
+        window.scrollTo({
+
+            top: (offSetHeight + 800),
+            behavior: "smooth"
+        })
+        setIsScroll(false)
+
+
+
+    }, [isScroll])
+
+
+
+
+
+
+
+
 
 
 
     const handleLoadMoreClick = () => {
+
+
         SetLoadMore((prev) => {
 
             return {
@@ -38,71 +120,7 @@ function Product({ TypeProducts = null, headerTitle }) {
         })
 
 
-        window.scroll(0, offSetHeight);
-        console.log(offSetHeight)
-
     }
-    // const handleScroll = () => {
-    //     console.log("ham scroll")
-    //     window.scroll(0, 300)
-    // }
-
-
-
-    useEffect(() => {
-
-        if (products.length < 0) {
-            return
-        }
-        console.log("ham effect")
-
-        try {
-            const getAllProduct = (async () => {
-                const response = await ApiProduct.getAllProduct(loadMore);
-
-                setProducts(response.data.data);
-                // console.log("productdata", response.data.data);
-
-
-
-
-
-            })();
-        } catch (error) {
-
-        }
-
-
-
-
-        const offset = (document.body.getBoundingClientRect().top * (-1)) + 800;
-        setOffSetHeight(offset);
-
-
-
-
-
-        // return () => {
-
-
-        //     // console.log("day la do dep")
-        //     // window.scroll(0, window.scrollY)
-
-
-
-
-
-
-
-        // }
-
-
-
-    }, [loadMore]);
-
-
-
-
 
 
 

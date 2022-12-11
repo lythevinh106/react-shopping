@@ -9,6 +9,17 @@ function Footer(props) {
     return (
         <div>
             day la footer
+            <h1>day la footer</h1>
+            <h1>day la footer</h1>
+            <h1>day la footer</h1>
+            <h1>day la footer</h1>
+            <h1>day la footer</h1>
+            <h1>day la footer</h1>
+            <h1>day la footer</h1>
+            <h1>day la footer</h1>
+            <h1>day la footer</h1>
+            <h1>day la footer</h1>
+            day la footer
         </div>
     );
 }

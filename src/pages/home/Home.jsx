@@ -6,6 +6,8 @@ import "./style.scss";
 import SubBanner from '../../coponent/SubBanner/SubBanner';
 import Product from '../../coponent/Product/Product';
 import ApiProduct from '../../ApiService/ApiProduct';
+import AboutUs from '../../coponent/AboutUs/AboutUs';
+import Contact from '../../coponent/Contact/Contact';
 
 Home.propTypes = {
 
@@ -106,6 +108,14 @@ function Home(props) {
 
                 <Product headerTitle="TỔNG HỢP SẢN PHẨM " />
                 {/* <Product headerTitle="SẢN PHẨM BÁN CHẠY" products={productsData} /> */}
+            </div>
+
+            <div className="home__about-us">
+                <AboutUs />
+            </div>
+
+            <div className="home__contact">
+                <Contact />
             </div>
 
 

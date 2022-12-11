@@ -9,14 +9,27 @@
 
 }
 
-.home__slider{
+
+.home{
+
+
+&__slider{
     margin-top: 20px;
 }
 
-.home__sub-banner{
+&__sub-banner{
     margin: 30px 0;
 }
 
-.home__product{
+&__product{
     margin: 30px 0;
+}
+&__about-us{
+
+}
+
+&__contact{
+    margin-top: 30px;
+
+}
 }
