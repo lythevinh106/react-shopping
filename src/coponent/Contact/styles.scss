@@ -32,15 +32,20 @@
     
     .contact__form{
          display: flex;
+         align-items: center;
+         height: 40px;
      
         .contact__form__input{
        
-            border: 1px solid black;
+            width: 314px;
+            height: inherit;
         
         }
         .contact__form__btn{
+            width: 40px;
+            height: inherit;
             
-        
+            // padding: 10px;
             
         }
 

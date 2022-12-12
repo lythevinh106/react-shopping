@@ -7,16 +7,15 @@ MenuResult.propTypes = {
 
 };
 
-function MenuResult({ products, input }) {
-    let navigate = useNavigate();
+function MenuResult({ products, input, onClick = () => { } }) {
+
     console.log("products", products)
 
-    const handleOnclick = (product) => {
+    const handleOnclick = (products) => {
 
-        input.current.focus();
-        input.current.value = product.name
 
-        navigate(`product/${product.id}`);
+
+        onClick(products)
     }
 
     return (

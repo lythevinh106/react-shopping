@@ -9,13 +9,16 @@ SubBanner.propTypes = {
 
 };
 
-function SubBanner({ listBanner }) {
+function SubBanner({ listBanner, col1 = false, col2 = false, col3 = false }) {
+
+
 
     const classes =
         cln(
             'sub-banner-wrapper', {
-
-
+            col1,
+            col2,
+            col3
 
         }
 
@@ -34,16 +37,16 @@ function SubBanner({ listBanner }) {
 
                 listBanner.map((banner) => {
                     return (
-                        <PopperWrapper key={banner.id}>
-                            <div className='sub-banner__img'>
+                        <div className='sub-banner__img' key={banner.id}>
+                            <PopperWrapper >
 
 
                                 <Image src={banner.image} />
 
 
 
-                            </div>
-                        </PopperWrapper>
+                            </PopperWrapper>
+                        </div>
                     )
 
 

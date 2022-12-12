@@ -6,7 +6,7 @@ Button.propTypes = {
 
 };
 
-function Button({ onClick = () => { }, children, className, btnWhite = false, btnRed = false, btnYellow = false, disabled = false, SizeNormal = false, sizeSmall = false }) {
+function Button({ type = "text", onClick = () => { }, children, className, btnWhite = false, btnRed = false, btnYellow = false, disabled = false, SizeNormal = false, sizeSmall = false }) {
 
 
     const classes = cln(
@@ -18,6 +18,7 @@ function Button({ onClick = () => { }, children, className, btnWhite = false, bt
         "btn--disabled": disabled,
         "btn--size-normal": SizeNormal,
         "btn--size-small": sizeSmall,
+
 
         // "btn--with-icon": withIcon ? true : false,
 
@@ -36,7 +37,7 @@ function Button({ onClick = () => { }, children, className, btnWhite = false, bt
 
 
     return (
-        <button className={classes} onClick={handelOnClick}>
+        <button className={classes} onClick={handelOnClick} type={type}>
             <span>
                 {children}
             </span>

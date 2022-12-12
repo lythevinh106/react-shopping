@@ -9,6 +9,11 @@ import { Popover, Spin, Tooltip } from 'antd';
 import MenuResult from '../MenuResult/MenuResult';
 import ApiProduct from '../../../../ApiService/ApiProduct';
 import PopperWrapper from '../../../PopperWapper/PopperWrapper';
+import Form from '../../../Form/Form';
+import InputField from '../../../Form/InputField/InputField';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+
 
 
 
@@ -25,7 +30,7 @@ function SearchInput(props) {
     const [searchResult, setSearchResult] = useState([])
 
 
-    const InputRef = useRef();
+    const InputRef = useRef(null);
 
 
 
@@ -82,93 +87,140 @@ function SearchInput(props) {
 
 
     }, [InputValue]);
-    console.log(loadSpin)
+    // console.log(loadSpin)
 
     const handleOnChange = (value) => {
+
+        console.log(value)
         setInputValue(value);
 
 
     }
 
+    let navigate = useNavigate();
+
+    const handleMenuResultClick = (product) => {
+        console.log(product)
+
+        InputRef.current.focus();
+        InputRef.current.value = product.name
+
+        navigate(`product/${product.id}`);
+    }
+
+
+    const form = useForm({
+
+        defaultValues: {
+            header: '',
+
+        },
+
+    });
+
+    const onSubmit = (data) => {
+        console.log(data)
+
+    }
     return (
 
 
-        <div className="header-search" >
+        // <Form>
 
 
-            <span className="header-search__input">
-                <PopperWrapper>
-                    <Popover
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+            <div className="header-search" >
 
-                        overlayClassName='header-search__result'
-                        content={() => {
+                <span className="header-search__input">
 
-                            return (
+                    <PopperWrapper>
+                        <Popover
 
+                            overlayClassName='header-search__result'
+                            content={() => {
 
-
-                                <MenuResult input={InputRef} products={searchResult} />
-
-
-
+                                return (
 
 
 
-
-                            )
-
-                        }}
-
-                        trigger="click"
-                        open={opentResult}
-                    // open={open}
-                    // onOpenChange={handleOpenChange}
-                    >
+                                    <MenuResult onClick={handleMenuResultClick} products={searchResult} />
 
 
 
-                        <input ref={InputRef} placeholder='Hôm nay bạn cần tìm gì?'
 
-                            onChange={(e) => {
-                                handleOnChange(e.target.value)
+
+
+
+                                )
+
                             }}
 
+                            trigger="click"
+                            open={opentResult}
+                        // open={open}
+                        // onOpenChange={handleOpenChange}
+                        >
 
-                        />
 
 
 
 
 
-                    </Popover>
+                            <InputField
+                                ref={InputRef}
+                                placeholder='Hôm nay bạn cần tìm gì?'
+
+
+                                onChange={(e) => {
+                                    handleOnChange(e.target.value)
+                                }}
+
+                                form={form} name="header"
+
+
+
+
+                            />
+
+
+
+
+
+
+
+                        </Popover>
+                    </PopperWrapper>
+
+
+
+
+
+
+                </span >
+
+
+
+
+
+
+
+                <PopperWrapper>
+
+                    <Button type='submit'>
+                        <SearchOutlined />
+                    </Button>
+
                 </PopperWrapper>
 
 
+                <Spin spinning={loadSpin} className='header-search__spin' />
+
+            </div >
+        </form>
 
 
 
-
-            </span >
-
-
-
-
-
-
-            <PopperWrapper>
-
-                <Button >
-                    <SearchOutlined />
-                </Button>
-
-            </PopperWrapper>
-
-
-            <Spin spinning={loadSpin} className='header-search__spin' />
-
-
-
-        </div >
+        // </Form>
 
 
     );

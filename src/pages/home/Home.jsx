@@ -78,6 +78,21 @@ const ListSubBanner = [
 
 
 
+const bigBanner = [
+
+
+    {
+        id: 1,
+        image: "https://cdn.hoanghamobile.com/i/home/Uploads/2022/12/08/1200x200-hotsale-galaxy-a-series-01-1.jpg"
+    },
+
+
+
+
+]
+
+
+
 
 
 
@@ -103,12 +118,20 @@ function Home(props) {
             </div>
 
 
+
+
             <div className="home__product">
 
 
                 <Product headerTitle="TỔNG HỢP SẢN PHẨM " />
                 {/* <Product headerTitle="SẢN PHẨM BÁN CHẠY" products={productsData} /> */}
             </div>
+
+            <div className="home__sub-banner" >
+                <SubBanner listBanner={bigBanner} col1 />
+            </div>
+
+
 
             <div className="home__about-us">
                 <AboutUs />

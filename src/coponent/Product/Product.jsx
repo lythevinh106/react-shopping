@@ -61,7 +61,7 @@ function Product({ TypeProducts = null, headerTitle }) {
                 const response = await ApiProduct.getAllProduct(loadMore);
 
                 setProducts(response.data.data);
-                console.log("ham chinh")
+                // console.log("ham chinh")
                 if (dem.current > 0) {
                     setIsScroll(true);
                 }
