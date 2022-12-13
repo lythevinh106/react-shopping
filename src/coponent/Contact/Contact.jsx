@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import "./styles.scss"
 import Image from '../Image/Image';
@@ -9,31 +9,77 @@ import Form from '../Form/Form';
 import InputField from '../Form/InputField/InputField';
 import PopperWrapper from '../PopperWapper/PopperWrapper';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 Contact.propTypes = {
 
 };
 
+const schema = yup.object({
+    email: yup.string().email("vui lòng nhập đúng định dạng email").required("không được bỏ trống trường này"),
+
+}).required();
+
+
 function Contact(props) {
 
     // let inputRef = useRef();
     // const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
+
+
     const form = useForm({
 
         defaultValues: {
             email: '',
 
         },
+        resolver: yupResolver(schema)
 
     });
 
+    const { formState: { errors } } = form;
+
+
+
+
+    // console.log(errors);
+
+
     const onSubmit = (data) => {
-        console.log("du klieu frm", data);
+
+
+        console.log("dang xử lí gửi email.....")
+
+        notify();
+
     }
-    console.log(form.watch("example"));
+    // console.log(form.watch("example"));
+
+    const notify = () => toast('Email đã được gửi thành công!', {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
 
     return (
+
+
+
         <div className='contact-wrapper'>
+
+
             <div className="contact__icon">
                 <Image src="https://hoanghamobile.com/Content/web/img/sub-logo.png" />
             </div>
@@ -56,10 +102,12 @@ function Contact(props) {
                         <PopperWrapper>
                             {/* <input  {...form.register("email")} /> */}
                             {/* register={form.register("email")} */}
-                            <InputField name="email"
+                            <InputField name="email" error={errors?.email?.message}
                                 form={form}
                                 type='text' placeholder='nhập Emal của bạn' />
                         </PopperWrapper>
+
+
                     </div>
                     <div className="contact__form__btn">
 

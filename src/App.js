@@ -7,10 +7,24 @@ import { publicRoutes } from './routes/routes';
 import { Fragment } from 'react';
 
 
+
+
+
 function App() {
   return (
+
+
+    
+
     
  <Routes>
+
+
+{console.log("render cua trang")}
+
+
+
+
 
      {publicRoutes.map((route,index)=>{
 
@@ -30,8 +44,8 @@ function App() {
        
         {/* <Route path="users/*" element={<Users />} /> */}
  </Routes>
-    
-   
+ 
+  
   );
 }
 

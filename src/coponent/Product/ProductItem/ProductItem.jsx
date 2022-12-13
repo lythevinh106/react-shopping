@@ -5,11 +5,31 @@ import Button from '../../Button/Button';
 import { ShoppingCartOutlined } from '@mui/icons-material';
 import PopperWrapper from "../../PopperWapper/PopperWrapper"
 import "./style.scss"
+import { toast } from 'react-toastify';
 ProductItem.propTypes = {
 
 };
 
 function ProductItem({ image, title, oldPrice, newPrice, }) {
+
+
+    const handleBtnCartOnClick = () => {
+        notifyCart();
+    }
+
+
+
+    const notifyCart = () => toast.success('thêm giỏ hàng thành công!', {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+
     return (
         <div className="product-item-wrapper">
             <PopperWrapper>
@@ -33,14 +53,12 @@ function ProductItem({ image, title, oldPrice, newPrice, }) {
                         </div>
                     </div>
                     <div className="product-item__btn">
-                        <Button btnRed SizeNormal  >
-                            <span> Mua Ngay</span>
+                        <Button btnRed SizeNormal >
+                            Mua Ngay
                         </Button>
 
-                        <Button btnRed SizeNormal >
+                        <Button btnRed SizeNormal onClick={handleBtnCartOnClick}>
                             Giỏ Hàng
-
-
                         </Button>
 
                     </div>

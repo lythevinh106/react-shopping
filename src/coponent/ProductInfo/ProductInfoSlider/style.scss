@@ -1,0 +1,60 @@
+.info-slider-wrapper{
+
+
+    .info-slider--main{
+      width: 100%;
+      position: relative;
+
+
+
+        .slick-arrow{
+
+       
+        
+        &::before{
+            background-color: rgba(62, 60, 60,0.5);
+            padding: 10px;
+            border-radius: 50%;
+            
+        }
+      
+       
+    }
+    .slick-prev{
+        position: absolute;
+        top:50%;
+        left: 1%;
+        z-index: 2;
+
+
+         
+    }
+    .slick-next{ position: absolute;
+        top:50%;
+        right: 6%;
+        z-index: 2;
+        
+    }
+    
+    }
+    .info-slider--sub{
+        width: 100%;
+        margin-top: 40px;
+        height: 80px;
+        padding: 1px 0;
+
+
+        .slider__img{
+
+          
+           height: 70px;
+           padding: 5px;
+           
+          
+        }
+      
+    }
+
+
+  
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Home from '../pages/home/Home';
+import DetailProduct from '../pages/DetailProduct/DetailProduct';
 
 export const publicRoutes = [
     {
@@ -21,12 +22,16 @@ export const publicRoutes = [
     },
 
     {
-        path: "/products/:productId",
-        element: Home,
+        path: "/product/:productId",
+        element: DetailProduct,
         // layout: null
 
 
     },
+
+
+
+
 
 ]
 

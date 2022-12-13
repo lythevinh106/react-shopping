@@ -81,12 +81,12 @@ function Product({ TypeProducts = null, headerTitle }) {
 
     }, [loadMore]);
 
-
+    // console.log("dât la render của load moare")
     useEffect(() => {
 
         if (isScroll === false) return;
 
-        console.log("day la scroll")
+        // console.log("day la scroll")
         window.scrollTo({
 
             top: (offSetHeight + 800),

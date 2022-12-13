@@ -1,0 +1,130 @@
+:root {
+
+    --font-info-center: "font5";
+}
+
+.info-center-wrapper {
+
+
+    .info--price {
+
+
+        .info--price__new {
+            font-family: var(--font-info-center);
+            font-size: 2.2rem;
+            color: var(--c_red-default);
+            font-weight: bold;
+
+
+        }
+
+        .info--price__old {
+            font-size: 1.5rem;
+            margin-left: 15px;
+            font-family: var(--font-info-center);
+            font-weight: 0;
+            text-decoration: line-through;
+
+        }
+
+
+    }
+
+
+    .info--banner {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        color: var(--c_white_default);
+        background-color: var(--c_green_default);
+        padding: 5px 0;
+        border-radius: 3px;
+
+        .info--banner--icon {
+
+            svg {
+                font-size: 2rem;
+
+            }
+
+
+
+
+        }
+
+        .info--banner-title {
+            font-family: var(--font-info-center);
+            font-size: 1.6rem;
+            margin-left: 5px;
+            font-weight: 100;
+
+
+        }
+
+
+
+
+    }
+
+    .info--btn {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+
+        .info--btn__buy {
+            width: 180px;
+
+            // height: 53px;
+            .btn--title {
+                font-family: var(--font-info-center);
+                // padding: 0 10px;
+
+                &:nth-child(1) {
+                    font-size: 1.8rem;
+
+                }
+
+                &:nth-child(2) {
+                    margin-top: 2px;
+                    font-size: 1.3rem;
+
+                    font-weight: 100;
+
+                }
+
+                &:nth-child(3) {
+                    margin-top: 2px;
+                    font-size: 1.3rem;
+
+                    font-weight: 100;
+
+                }
+            }
+        }
+
+        .info--btn_cart {
+            width: 180px;
+
+            .btn-cart__icon {
+
+
+                svg {
+                    font-size: 2rem;
+                }
+            }
+
+            .btn-cart__title {
+
+                .btn--title {
+
+                    font-family: var(--font-info-center);
+                }
+            }
+
+
+        }
+
+
+    }
+
+}

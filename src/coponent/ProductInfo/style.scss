@@ -1,0 +1,52 @@
+.product-info-wrapper {
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .product__title {
+        width: 100%;
+        margin: 10px 0px;
+        font-size: 20px;
+        font-family: "font5";
+
+    }
+
+    .product__main {
+
+
+        width: 100%;
+
+        display: flex;
+
+
+        &__slider {
+            width: 35%;
+        }
+
+        &__center {
+
+            width: 48%;
+            margin-left: 30px;
+
+
+
+        }
+
+
+    }
+
+    .product__parameters {
+
+        background-color: black;
+        flex: 1;
+
+    }
+
+    .product__des {
+        width: 100%;
+
+        background-color: yellow;
+
+    }
+}

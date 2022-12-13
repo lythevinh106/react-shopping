@@ -132,8 +132,8 @@ function SearchInput(props) {
             <div className="header-search" >
 
                 <span className="header-search__input">
-
                     <PopperWrapper>
+
                         <Popover
 
                             overlayClassName='header-search__result'
@@ -189,28 +189,30 @@ function SearchInput(props) {
 
 
                         </Popover>
+
+
+
+
+
+
                     </PopperWrapper>
-
-
-
-
-
-
                 </span >
 
 
 
 
+                <div className="header-search__btn">
+                    <PopperWrapper>
+
+                        <Button type='submit'>
+                            <SearchOutlined />
+                        </Button>
+
+                    </PopperWrapper>
+                </div>
 
 
 
-                <PopperWrapper>
-
-                    <Button type='submit'>
-                        <SearchOutlined />
-                    </Button>
-
-                </PopperWrapper>
 
 
                 <Spin spinning={loadSpin} className='header-search__spin' />

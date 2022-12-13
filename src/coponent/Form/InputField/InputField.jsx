@@ -2,16 +2,29 @@ import React, { forwardRef, useRef } from 'react';
 import PropTypes from 'prop-types';
 import "./style.scss"
 
+import cln from "classnames";
 
-const InputField = forwardRef(({ type = "text", placeholder = "", onChange = () => { }, form = {}, name = "", }, ref) => {
+
+const InputField = forwardRef((
+    { type = "text", placeholder = "", onChange = () => { }, form = {}, name = "", error = "" }, ref) => {
 
     // const { register, handleSubmit, watch, formState: { errors } } = form
 
 
+    const classes = cln("input-wrapper", {
+        error
+
+    })
+
     return (
-        <div className='input-wrapper'>
+
+
+
+        <div className={classes}>
 
             <input
+
+
                 {...form.register(name)}
 
                 type={type} placeholder={placeholder}
@@ -21,7 +34,14 @@ const InputField = forwardRef(({ type = "text", placeholder = "", onChange = () 
 
 
             />
-        </div>
+
+            {error && (
+                <div className="input-error">
+                    {error}
+                </div>
+            )}
+
+        </div >
     );
 });
 
