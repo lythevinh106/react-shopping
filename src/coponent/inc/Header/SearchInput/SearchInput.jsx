@@ -77,13 +77,7 @@ function SearchInput(props) {
 
 
 
-
-
-
-
         })();
-
-
 
 
     }, [InputValue]);
@@ -105,7 +99,7 @@ function SearchInput(props) {
         InputRef.current.focus();
         InputRef.current.value = product.name
 
-        navigate(`product/${product.id}`);
+        navigate(`products/${product.id}`);
     }
 
 

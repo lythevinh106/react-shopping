@@ -4,6 +4,10 @@
 }
 
 .info-center-wrapper {
+    padding: 15px;
+
+
+
 
 
     .info--price {
@@ -53,7 +57,7 @@
         }
 
         .info--banner-title {
-            font-family: var(--font-info-center);
+            // font-family: var(--font-info-center);
             font-size: 1.6rem;
             margin-left: 5px;
             font-weight: 100;
@@ -67,16 +71,17 @@
     }
 
     .info--btn {
+        margin-bottom: auto;
         display: flex;
         justify-content: space-around;
-        margin-top: 20px;
+        // margin-top: 20px;
 
         .info--btn__buy {
             width: 180px;
 
             // height: 53px;
             .btn--title {
-                font-family: var(--font-info-center);
+                // font-family: var(--font-info-center);
                 // padding: 0 10px;
 
                 &:nth-child(1) {
@@ -117,7 +122,7 @@
 
                 .btn--title {
 
-                    font-family: var(--font-info-center);
+                    // font-family: var(--font-info-center);
                 }
             }
 
@@ -125,6 +130,30 @@
         }
 
 
+    }
+
+    .info--desc {
+        margin: 15px 0px;
+
+        text-align: center;
+        height: 300px;
+        overflow: scroll;
+
+        &--title {
+
+            font-size: 2rem;
+            font-weight: bold;
+
+        }
+
+        &--main {
+            // font-family: "font2";
+            margin-top: 5px;
+            font-size: 1.5rem;
+            font-weight: bold;
+
+
+        }
     }
 
 }

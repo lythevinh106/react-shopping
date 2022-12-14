@@ -3,23 +3,59 @@ import PropTypes from 'prop-types';
 import "./style.scss"
 import ProductInfoSlider from './ProductInfoSlider/ProductInfoSlider';
 import ProductInfoCenter from './ProductInfoCenter/ProductInfoCenter';
-
+import PopperWrapper from '../PopperWapper/PopperWrapper';
+import cln from "classnames"
+import ApiProduct from '../../ApiService/ApiProduct';
 ProductInfo.propTypes = {
 
 };
 
-function ProductInfo(props) {
+function ProductInfo(product) {
+
+    const { name, originalPrice, salePrice, shortDescription, description, thumbnail
 
 
+    } = product.product;
+
+    // const productInfoCenter = {
+    //     originalPrice,
+    //     salePrice,
+    //     shortDescription
+
+
+
+    // }
+
+    // console.log(productInfoCenter.salePrice)
+
+
+    const image = thumbnail?.thumbnail?.url;
+
+
+
+
+
+
+    const [showReadMore, setShowReadMore] = useState(false);
+
+
+
+
+    const handleDesOnClick = () => {
+
+        setShowReadMore(!showReadMore);
+    }
 
 
     return (
         <div className='product-info-wrapper'>
 
             <div className="product__title">
-                Điện thoại di động Samsung Galaxy A13 4GB/128GB - Chính hãng
+                {name}
             </div>
             <div className="product__main">
+
+                {/* chua xu li */}
                 <div className="product__main__slider">
 
                     <ProductInfoSlider />
@@ -27,15 +63,54 @@ function ProductInfo(props) {
                 </div>
 
                 <div className="product__main__center">
-                    <ProductInfoCenter />
+                    <ProductInfoCenter
+
+                        productInfoCenter={
+                            {
+                                originalPrice: originalPrice,
+                                salePrice: salePrice,
+                                shortDescription: shortDescription,
+                                description
+                            }
+                        }
+                    // originalPrice={originalPrice} salePrice={salePrice}
+                    // shortDescription={shortDescription}
+
+
+                    />
                 </div>
             </div>
 
 
 
-            <div className="product__des">
+            <div className="product__des-wrapper">
+                <PopperWrapper>
+                    <div className="product__des">
 
-            </div>
+
+
+
+                        <div className={cln("product__des__content", { active: showReadMore })}
+                            dangerouslySetInnerHTML={{ __html: description }}
+                        >
+
+
+                        </div>
+
+                        <div className={cln("product__des__btn", {
+                            active: showReadMore
+                        })}
+
+                            onClick={handleDesOnClick}>
+                            <span>  {showReadMore ?
+
+                                "Thu Gọn" : "Xem Thêm"}</span>
+
+
+                        </div>
+                    </div>
+                </PopperWrapper>
+            </div >
         </div >
     );
 }

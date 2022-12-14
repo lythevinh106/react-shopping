@@ -7,6 +7,7 @@ import PopperWrapper from '../PopperWapper/PopperWrapper';
 import ApiProduct from '../../ApiService/ApiProduct';
 import Button from '../Button/Button';
 import { baseUrl } from '../../constanst/UrlContanst';
+import TitleCart from '../TitleCart/TitleCart';
 Product.propTypes = {
 
 };
@@ -132,7 +133,9 @@ function Product({ TypeProducts = null, headerTitle }) {
         <div className="product-wrapper">
 
             <div className="product-header">
-                {headerTitle}
+
+
+                <TitleCart title={headerTitle} />
             </div>
 
             <div className='product-main'>
@@ -146,7 +149,8 @@ function Product({ TypeProducts = null, headerTitle }) {
                             image: `${baseUrl}${product.thumbnail?.url}`,
                             title: product.name,
                             newPrice: product.salePrice,
-                            oldPrice: product.originalPrice
+                            oldPrice: product.originalPrice,
+                            id: product.id
 
 
                         }

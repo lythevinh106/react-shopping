@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import "./style.scss"
 import Image from '../../../../Image/Image';
 import { baseUrl } from '../../../../../constanst/UrlContanst';
+import FormatPrice from '../../../../../until/FormatPrice/FormatPrice';
 MenuResultItem.propTypes = {
 
 };
@@ -26,7 +27,7 @@ function MenuResultItem({ product, onClick }) {
                 <div className="info__price">
 
 
-                    {new Intl.NumberFormat('vi', { style: 'currency', currency: 'VND' }).format(product.salePrice)}
+                    {FormatPrice(product.salePrice)}
                 </div>
             </div>
         </li>

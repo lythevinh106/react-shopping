@@ -1,14 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import "./style.scss"
 import Image from '../../Image/Image';
+import BackToTop from '../../BackToTop/BackToTop';
 Footer.propTypes = {
 
 };
 
 function Footer(props) {
+
+    const [showBtn, setShowBtn] = useState();
+
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            // console.log(window.scrollY)
+            if (window.scrollY >= 1000) {
+                setShowBtn(true)
+            } else {
+
+                setShowBtn(false)
+            }
+        })
+
+    }, []);
+
     return (
+
+
+
         <footer >
+
+            {showBtn && <BackToTop />}
+
+
+
             <div className="content">
 
                 <div className="item-link">

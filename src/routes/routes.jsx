@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Home from '../pages/home/Home';
 import DetailProduct from '../pages/DetailProduct/DetailProduct';
+import DetailProductLayout from '../layout/DetailProductLayout/DetailProductLayout';
 
 export const publicRoutes = [
     {
@@ -22,9 +23,9 @@ export const publicRoutes = [
     },
 
     {
-        path: "/product/:productId",
+        path: "/products/:productId",
         element: DetailProduct,
-        // layout: null
+        layout: DetailProductLayout
 
 
     },

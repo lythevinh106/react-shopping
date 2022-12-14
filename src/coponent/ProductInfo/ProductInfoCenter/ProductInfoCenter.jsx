@@ -5,65 +5,101 @@ import "./style.scss"
 import AirplanemodeActiveIcon from '@mui/icons-material/AirplanemodeActive';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Button from '../../Button/Button';
+import PopperWrapper from '../../PopperWapper/PopperWrapper';
+import FormatPrice from '../../../until/FormatPrice/FormatPrice';
 ProductInfoCenter.propTypes = {
 
 };
 
-function ProductInfoCenter(props) {
+function ProductInfoCenter(productInfoCenter) {
+
+    const { originalPrice,
+        salePrice,
+        shortDescription, } = productInfoCenter.productInfoCenter
+
+
+
+
     return (
-        <div className='info-center-wrapper'>
-            <div className="info--price">
-                <span className="info--price__new">
-                    3,790,000 ₫
-                </span>
-                <span className="info--price__old">
-                    3,690,000 ₫
-                </span>
-            </div>
+        <PopperWrapper>
+            <div className='info-center-wrapper'>
+                <div className="info--price">
+                    <span className="info--price__new">
+                        {FormatPrice(salePrice)}
+                    </span>
+                    <span className="info--price__old">
 
-            <div className="info--banner">
-                <div className="info--banner--icon">
-                    < AirplanemodeActiveIcon />
+                        {FormatPrice(originalPrice)}
+                    </span>
                 </div>
-                <div className="info--banner-title">
-                    Miễn Phí Vận Chuyển Toàn Quốc
-                </div>
-            </div>
 
 
-            <div className="info--btn">
-                <div className="info--btn__buy">
-                    <Button btnRed sizeBig >
+                <PopperWrapper>
+                    <div className="info--banner">
 
-                        <div className='btn--title'>Mua Ngay</div>
-                        <div className='btn--title'>Giao Tận Nhà (COD)
 
+                        <div className="info--banner--icon">
+                            < AirplanemodeActiveIcon />
                         </div>
-                        <div className='btn--title'>  hoặc   nhận tại cửa hàng</div>
-
-
-                    </Button>
-                </div>
-                <div className="info--btn_cart">
-                    <Button sizeBig >
-                        <div className="btn-cart__icon">
-                            <AddShoppingCartIcon />
+                        <div className="info--banner-title">
+                            Miễn Phí Vận Chuyển Toàn Quốc
                         </div>
-                        <div className="btn-cart__title">
+
+                    </div>
+                </PopperWrapper>
 
 
-                            <div className="btn--title">
-                                Thêm Giỏ Hàng
+
+                <div className="info--desc">
+                    <div className="info--desc--title">
+                        Mô Tả
+                    </div>
+
+                    <div className="info--desc--main">
+
+
+                        {shortDescription}
+
+                    </div>
+
+
+                </div>
+
+
+                <div className="info--btn">
+                    <div className="info--btn__buy">
+                        <Button btnRed sizeBig >
+
+                            <div className='btn--title'>Mua Ngay</div>
+                            <div className='btn--title'>Giao Tận Nhà (COD)
+
                             </div>
-                        </div>
-                    </Button>
+                            <div className='btn--title'>  hoặc   nhận tại cửa hàng</div>
 
 
+                        </Button>
+                    </div>
+                    <div className="info--btn_cart">
+                        <Button sizeBig >
+                            <div className="btn-cart__icon">
+                                <AddShoppingCartIcon />
+                            </div>
+                            <div className="btn-cart__title">
+
+
+                                <div className="btn--title">
+                                    Thêm Giỏ Hàng
+                                </div>
+                            </div>
+                        </Button>
+
+
+                    </div>
                 </div>
-            </div>
 
 
-        </div>
+            </div >
+        </PopperWrapper>
     );
 }
 

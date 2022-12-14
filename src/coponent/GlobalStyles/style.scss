@@ -1,89 +1,91 @@
- 
-
-@import "./reset.scss";
-@import "./font.scss";
+ @import "./reset.scss";
+ @import "./font.scss";
 
 
 
 
 
-:root{
-  --b-white:#f4f4f4;
-   --font-size-defalt:1.6rem;
-   --c_red-default:#f00;
-   --c_green_default:#00483d;
-   --c_green_second:#00917a;
-   --c_yellow_default:#f7941e;
-   --c_white_default:#fff;
+ :root {
+   --b-white: #f4f4f4;
+   --font-size-defalt: 1.6rem;
+   --c_red-default: #f00;
+   --c_green_default: #00483d;
+   --c_green_second: #00917a;
+   --c_yellow_default: #f7941e;
+   --c_white_default: #fff;
 
-   --c_black_default:#000;
-
-
-   --w_main-layout:87%;
-}
+   --c_black_default: #000;
 
 
-.Toastify__toast {
-  font-family: "font5";
-} 
-
-// @font-face{
-
-//   src: url("font/Dancing_Script/DancingScript-VariableFont_wght.ttf");
-//   font-family:"font1" ;  
-
-// }
-
- *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-size: var(--font-size-defalt);
-    font-family:"font8";
-    color: --red-default;
-    font-weight:100;
-    
-    
-   
-   
-   
-    
+   --w_main-layout: 87%;
  }
 
 
- html{
-    font-size: 10px;
+ .Toastify__toast {
+   font-family: "font5";
+ }
+
+ // @font-face{
+
+ //   src: url("font/Dancing_Script/DancingScript-VariableFont_wght.ttf");
+ //   font-family:"font1" ;  
+
+ // }
+
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-size: var(--font-size-defalt);
+   font-family: "font2";
+   color: --red-default;
+   font-weight: 500;
+
+
+
+
+
+
+
+
  }
 
 
- body{
+ html {
+   font-size: 10px;
+
+ }
+
+
+ body {
    width: 100%;
-   background-color: var( --b-white);
-   
+   background-color: var(--b-white);
+
  }
 
-// #root{
-//   background-color: var(--b-white);
+ // #root{
+ //   background-color: var(--b-white);
 
-// }
+ // }
 
- input,button{
+ input,
+ button {
    outline: none;
    border: none;
-   
+
 
  }
 
- button{
+ button {
    cursor: pointer;
  }
 
- a{
-    color: black;
-    text-decoration: none;
+ a {
+   color: black;
+   text-decoration: none;
 
  }
 
- ul{
+ ul {
    list-style: none;
  }

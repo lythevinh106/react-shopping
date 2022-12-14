@@ -39,11 +39,15 @@ const ApiProduct={
       //   );
 
      },
+
+     
      getProduct(productId){
          
         return AxiosClient.get(`/products/${productId}`);
 
-     }
+     },
+
+     
 
 }
 

@@ -1,58 +1,62 @@
-.contact-wrapper{
- display: flex;
- justify-content: space-around;
- align-items: center;
+.contact-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
 
-    .contact__icon{
-       width: 143px;
-       height: auto;
+    .contact__icon {
+        width: 143px;
+        height: auto;
 
-        
+
     }
-    .contact__subscribe{
+
+    .contact__subscribe {
         text-align: center;
-        
-        &__title{
+
+        &__title {
             margin: 5px 0;
             font-size: 1.9rem;
             font-family: "font2";
             font-weight: bold;
-          
+
         }
-        &__des{
+
+        &__des {
             font-family: "font2";
             margin: 5px 0;
         }
 
- 
-       
+
+
     }
- 
-        
-    
-    .contact__form{
-         display: flex;
-         align-items: center;
-         height: 40px;
-     
-        .contact__form__input{
-       
+
+
+
+    .contact__form {
+        display: flex;
+        align-items: center;
+        height: 40px;
+
+        .contact__form__input {
+
             width: 314px;
             height: inherit;
             position: relative;
 
-          
-        
+
+
         }
-        .contact__form__btn{
+
+        .contact__form__btn {
             width: 40px;
             height: inherit;
-            
+
             // padding: 10px;
-            
+
         }
 
     }
 
-    
+
 }

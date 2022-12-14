@@ -1,37 +1,13 @@
+.detail-product-wrapper {}
+
+
+.detail-product {
 
 
 
-.detail-product-wrapper{
-    margin: 0 auto;
-    width: var(--w_main-layout);
-
-   
-
-}
 
 
-.detail-product{
-
-
-&__slider{
-    margin-top: 20px;
-}
-
-&__sub-main{
-    margin: 30px 0;
-}
-
-&__about-us{
-
-}
-
-&__contact{
-    margin-top: 30px;
-
-}
-
-
-&__main{
-    margin-top: 20px;
-}
+    &__main {
+        margin-top: 20px;
+    }
 }

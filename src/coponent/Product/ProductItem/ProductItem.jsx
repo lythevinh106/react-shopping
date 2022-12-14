@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Image from './../../Image/Image';
 import Button from '../../Button/Button';
@@ -6,15 +6,33 @@ import { ShoppingCartOutlined } from '@mui/icons-material';
 import PopperWrapper from "../../PopperWapper/PopperWrapper"
 import "./style.scss"
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import ApiProduct from '../../../ApiService/ApiProduct';
+import FormatPrice from '../../../until/FormatPrice/FormatPrice';
 ProductItem.propTypes = {
 
 };
 
-function ProductItem({ image, title, oldPrice, newPrice, }) {
+function ProductItem({ image, title, oldPrice, newPrice, id }) {
+
+
+    const navigate = useNavigate();
+
+
+
+
+
+
 
 
     const handleBtnCartOnClick = () => {
         notifyCart();
+    }
+
+
+    const handleNavigate = () => {
+        navigate(`products/${id}`);
+
     }
 
 
@@ -30,11 +48,14 @@ function ProductItem({ image, title, oldPrice, newPrice, }) {
         theme: "light",
     });
 
+
+
+
     return (
         <div className="product-item-wrapper">
             <PopperWrapper>
                 <div className='product-item'>
-                    <div className="product-item__img">
+                    <div className="product-item__img" onClick={handleNavigate}>
                         <Image src={image} />
                     </div>
 
@@ -43,17 +64,19 @@ function ProductItem({ image, title, oldPrice, newPrice, }) {
                     </div>
 
 
-                    <div className="product-item__price">
+                    <div className="product-item__price" onClick={handleNavigate}>
                         <div className="price--new">
-                            {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(newPrice)}
+
+                            {FormatPrice(newPrice)}
+
                         </div>
 
                         <div className="price--old">
-                            {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(oldPrice)}
+                            {FormatPrice(oldPrice)}
                         </div>
                     </div>
                     <div className="product-item__btn">
-                        <Button btnRed SizeNormal >
+                        <Button btnRed SizeNormal onClick={handleNavigate}>
                             Mua Ngay
                         </Button>
 
