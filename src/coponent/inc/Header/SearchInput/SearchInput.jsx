@@ -30,7 +30,7 @@ function SearchInput(props) {
     const [searchResult, setSearchResult] = useState([])
 
 
-    const InputRef = useRef(null);
+    const InputRef = useRef();
 
 
 
@@ -94,7 +94,7 @@ function SearchInput(props) {
     let navigate = useNavigate();
 
     const handleMenuResultClick = (product) => {
-        console.log(product)
+        console.log("clock vao ket qua", InputRef)
 
         InputRef.current.focus();
         InputRef.current.value = product.name
@@ -169,7 +169,10 @@ function SearchInput(props) {
                                     handleOnChange(e.target.value)
                                 }}
 
-                                form={form} name="header"
+                                name="header"
+
+                                form={form}
+
 
 
 

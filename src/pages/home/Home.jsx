@@ -7,6 +7,7 @@ import "./style.scss";
 import Product from '../../coponent/Product/Product';
 
 
+
 Home.propTypes = {
 
 };
@@ -45,9 +46,6 @@ function Home(props) {
 
     return (
         <div className='home-wrapper'>
-
-
-
 
 
 

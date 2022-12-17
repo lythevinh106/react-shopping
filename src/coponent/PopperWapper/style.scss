@@ -3,7 +3,11 @@
   box-shadow: 0 4px 6px #00000029;
   border-radius: 10px;
   height: 100%;
+
   // overflow: hidden;
+  &.grey {
+    box-shadow: 0 4px 6px #e5e5e5;
+  }
 }
 
 .popper-wrapper.big-shadow {

@@ -13,6 +13,7 @@
    --c_green_second: #00917a;
    --c_yellow_default: #f7941e;
    --c_white_default: #fff;
+   --c_red-second: #fd5465;
 
    --c_black_default: #000;
 
@@ -61,6 +62,11 @@
    width: 100%;
    background-color: var(--b-white);
 
+
+
+
+
+
  }
 
  // #root{
@@ -88,4 +94,15 @@
 
  ul {
    list-style: none;
+ }
+
+ input::-webkit-outer-spin-button,
+ input::-webkit-inner-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+ }
+
+ /* Firefox */
+ input[type=number] {
+   -moz-appearance: textfield;
  }

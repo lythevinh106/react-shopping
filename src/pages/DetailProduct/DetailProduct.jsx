@@ -33,11 +33,11 @@ function DetailProduct(props) {
 
     const linkParam = useParams();
 
-
+    const { productId } = linkParam;
 
 
     useEffect(() => {
-        const { productId } = linkParam;
+
 
         const getApi = (async () => {
 
@@ -63,7 +63,7 @@ function DetailProduct(props) {
 
 
 
-    }, []);
+    }, [productId]);
 
 
     return (

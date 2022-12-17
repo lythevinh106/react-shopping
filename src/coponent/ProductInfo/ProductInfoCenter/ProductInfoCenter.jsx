@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import "./style.scss"
 
@@ -7,18 +7,32 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Button from '../../Button/Button';
 import PopperWrapper from '../../PopperWapper/PopperWrapper';
 import FormatPrice from '../../../until/FormatPrice/FormatPrice';
+
+
+import ModalBuyNow from '../../ModalBuyNow/ModalBuyNow';
 ProductInfoCenter.propTypes = {
 
 };
 
-function ProductInfoCenter(productInfoCenter) {
+function ProductInfoCenter({ productInfoCenter }) {
+
+
+    const [open, setOpen] = useState(false);
+
 
     const { originalPrice,
         salePrice,
-        shortDescription, } = productInfoCenter.productInfoCenter
+        shortDescription, } = productInfoCenter
+
+    const handleOnClickBtnBuy = () => {
+        setOpen(true)
+    }
 
 
-
+    const handleModalClick = () => {
+        setOpen(false)
+    }
+    console.log(open);
 
     return (
         <PopperWrapper>
@@ -66,9 +80,18 @@ function ProductInfoCenter(productInfoCenter) {
                 </div>
 
 
+                <ModalBuyNow productInfoCenter={productInfoCenter} open={open} onClick={handleModalClick} />
+
                 <div className="info--btn">
+
+
+
+
+
                     <div className="info--btn__buy">
-                        <Button btnRed sizeBig >
+                        <Button btnRed sizeBig onClick={handleOnClickBtnBuy}>
+
+
 
                             <div className='btn--title'>Mua Ngay</div>
                             <div className='btn--title'>Giao Tận Nhà (COD)

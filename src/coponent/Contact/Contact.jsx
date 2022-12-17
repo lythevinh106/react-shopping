@@ -102,6 +102,8 @@ function Contact(props) {
                         <PopperWrapper>
                             {/* <input  {...form.register("email")} /> */}
                             {/* register={form.register("email")} */}
+
+
                             <InputField name="email" error={errors?.email?.message}
                                 form={form}
                                 type='text' placeholder='nhập Emal của bạn' />

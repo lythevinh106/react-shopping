@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Image from './../../Image/Image';
 import Button from '../../Button/Button';
@@ -6,32 +6,46 @@ import { ShoppingCartOutlined } from '@mui/icons-material';
 import PopperWrapper from "../../PopperWapper/PopperWrapper"
 import "./style.scss"
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import ApiProduct from '../../../ApiService/ApiProduct';
 import FormatPrice from '../../../until/FormatPrice/FormatPrice';
+
+import cln from "classnames"
+import { useDispatch } from 'react-redux';
+import { activeProgress } from '../../../features/progress/progressSlice';
+
 ProductItem.propTypes = {
 
 };
 
-function ProductItem({ image, title, oldPrice, newPrice, id }) {
-
-
-    const navigate = useNavigate();
+function ProductItem({ image, title = 0, oldPrice = 0, newPrice = 0, id = 0, sliderStyle = false }) {
 
 
 
+
+
+    const dispatch = useDispatch();
 
 
 
 
 
     const handleBtnCartOnClick = () => {
-        notifyCart();
+
+
+        //////mo phong viec goi Api
+        dispatch(activeProgress(true))
+        setTimeout(() => {
+            dispatch(activeProgress(false))
+            notifyCart();
+        }, 1000)
+
+
     }
 
 
     const handleNavigate = () => {
-        navigate(`products/${id}`);
+        return redirect(`/products/${id}`)
 
     }
 
@@ -51,20 +65,30 @@ function ProductItem({ image, title, oldPrice, newPrice, id }) {
 
 
 
+    const classnames = cln("product-item-wrapper", {
+
+        "slider-style": sliderStyle
+
+    })
+
     return (
-        <div className="product-item-wrapper">
+
+        <div className={classnames}>
+
             <PopperWrapper>
                 <div className='product-item'>
                     <div className="product-item__img" onClick={handleNavigate}>
-                        <Image src={image} />
+                        <Link to={`/products/${id}`}>  <Image src={image} /></Link>
                     </div>
 
-                    <div className="product-item__title">
+                    <Link className="product-item__title" to={`/products/${id}`}>
                         {title}
-                    </div>
 
 
-                    <div className="product-item__price" onClick={handleNavigate}>
+                    </Link>
+
+
+                    <div className="product-item__price" >
                         <div className="price--new">
 
                             {FormatPrice(newPrice)}
@@ -76,21 +100,30 @@ function ProductItem({ image, title, oldPrice, newPrice, id }) {
                         </div>
                     </div>
                     <div className="product-item__btn">
-                        <Button btnRed SizeNormal onClick={handleNavigate}>
-                            Mua Ngay
-                        </Button>
 
-                        <Button btnRed SizeNormal onClick={handleBtnCartOnClick}>
-                            Giỏ Hàng
-                        </Button>
 
+                        <div className="product-btn-wrapper">
+                            <Button to={`/products/${id}`} btnRed SizeNormal
+                            //  onClick={handleNavigate}
+                            >
+
+
+                                Mua Ngay
+                            </Button>
+                        </div>
+                        <div className="product-btn-wrapper">
+                            <Button btnRed SizeNormal onClick={handleBtnCartOnClick}>
+                                Giỏ Hàng
+                            </Button>
+
+                        </div>
                     </div>
 
 
                 </div>
 
-            </PopperWrapper>
-        </div>
+            </PopperWrapper >
+        </div >
     );
 }
 

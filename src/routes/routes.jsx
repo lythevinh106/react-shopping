@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Home from '../pages/home/Home';
 import DetailProduct from '../pages/DetailProduct/DetailProduct';
 import DetailProductLayout from '../layout/DetailProductLayout/DetailProductLayout';
+import Cart from '../pages/Cart/Cart';
+import CartLayout from '../layout/CartLayout/CartLayout';
 
 export const publicRoutes = [
     {
@@ -26,6 +28,13 @@ export const publicRoutes = [
         path: "/products/:productId",
         element: DetailProduct,
         layout: DetailProductLayout
+
+
+    },
+    {
+        path: "/cart",
+        element: Cart,
+        layout: CartLayout
 
 
     },

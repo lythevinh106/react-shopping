@@ -6,15 +6,29 @@ import cln from "classnames";
 
 
 const InputField = forwardRef((
-    { type = "text", placeholder = "", onChange = () => { }, form = {}, name = "", error = "" }, ref) => {
+    { Comp = "input", bgGrey = false, type = "text", placeholder = "", value,
+        onChange = () => { }, form = undefined, name = "", error = ""
 
+        , defaultValue, ...propOther
+    }, ref) => {
     // const { register, handleSubmit, watch, formState: { errors } } = form
+    let refProp = {};
+    if (ref) {
+        refProp = {
+            ref
+        }
 
-
+    }
     const classes = cln("input-wrapper", {
-        error
+        error,
+        "input--grey": bgGrey
 
     })
+
+    const handleOnchange = (e) => {
+        onChange(e);
+    }
+
 
     return (
 
@@ -22,19 +36,18 @@ const InputField = forwardRef((
 
         <div className={classes}>
 
-            <input
+            <Comp
+                {...form?.register(name)}
+                type={type}
 
-
-                {...form.register(name)}
-
-                type={type} placeholder={placeholder}
-                //  onChange={onChange}
-
-                onChange={(e) => onChange(e)}
-
+                // defaultValue={defaultValue}
+                value={value}
+                {...refProp}
+                placeholder={placeholder}
+                onChange={handleOnchange}
+                {...propOther}
 
             />
-
             {error && (
                 <div className="input-error">
                     {error}

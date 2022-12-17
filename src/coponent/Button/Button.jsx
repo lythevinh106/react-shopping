@@ -2,13 +2,18 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import cln from "classnames"
 import "./style.scss"
+import { Link } from 'react-router-dom';
 Button.propTypes = {
 
 };
 
-function Button({ type = "text", onClick = () => { },
-    btnGreen = false, children, className, btnWhite = false, btnRed = false,
-    btnYellow = false, disabled = false, SizeNormal = false, sizeSmall = false, sizeBig = false }) {
+function Button({ typeComp = "button", type = "text", onClick = () => { },
+    btnGreen = false, children, className, btnWhite = false, btnRed = false, to, href,
+    btnYellow = false, disabled = false, SizeNormal = false, sizeSmall = false, sizeBig = false,
+    rounded = false,
+
+    passProps
+}) {
 
 
     const classes = cln(
@@ -22,6 +27,7 @@ function Button({ type = "text", onClick = () => { },
         "btn--size-normal": SizeNormal,
         "btn--size-small": sizeSmall,
         "btn--size-big": sizeBig,
+        "btn--rounded": rounded,
 
 
 
@@ -42,13 +48,34 @@ function Button({ type = "text", onClick = () => { },
     // }
 
 
+    const props = {
+        onClick,
+        ...passProps
+
+    }
+    let Comp = "button";
+
+    if (to) {
+
+        props.to = to;
+        Comp = Link
+
+    } else if (href) {
+        props.href = href;
+        Comp = "a"
+
+    }
+
+
+
+
     return (
-        <button className={classes} onClick={onClick} type={type}>
+        <Comp className={classes}  {...props} type={type} >
             <span className='btn-core'>
                 {children}
             </span>
 
-        </button>
+        </Comp>
     );
 }
 

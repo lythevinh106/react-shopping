@@ -5,6 +5,7 @@ import { ShoppingCartOutlined, UserOutlined } from '@ant-design/icons';
 
 import NavHeaderItem from '../NavHeaderItem/NavHeaderItem';
 import PopperWrapper from '../../../PopperWapper/PopperWrapper';
+import { Link } from 'react-router-dom';
 NavHeader.propTypes = {
 
 };
@@ -18,11 +19,12 @@ function NavHeader(props) {
         <ul className="header-nav">
 
             <div className="header-nav__item">
-                <PopperWrapper>    <NavHeaderItem icon={<UserOutlined />} title="Thông Tin" onClick={handleClick} /></PopperWrapper>
+                <Link to="/info"> <PopperWrapper>    <NavHeaderItem icon={<UserOutlined />} title="Thông Tin" onClick={handleClick} /></PopperWrapper></Link>
+
 
             </div>
             <div className="header-nav__item">
-                <PopperWrapper> <NavHeaderItem icon={<ShoppingCartOutlined />} title="Giỏ Hàng" /></PopperWrapper>
+                <Link to="/cart"> <PopperWrapper> <NavHeaderItem icon={<ShoppingCartOutlined />} title="Giỏ Hàng" /></PopperWrapper></Link>
 
             </div>
 

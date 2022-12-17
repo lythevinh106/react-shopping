@@ -8,6 +8,7 @@ import ApiProduct from '../../ApiService/ApiProduct';
 import Button from '../Button/Button';
 import { baseUrl } from '../../constanst/UrlContanst';
 import TitleCart from '../TitleCart/TitleCart';
+import ProgressHeader from '../../ProgressHeader/ProgressHeader';
 Product.propTypes = {
 
 };
@@ -19,12 +20,16 @@ function Product({ TypeProducts = null, headerTitle }) {
     const [products, setProducts] = useState([]);
 
 
+
+
     const [loadMore, SetLoadMore] = useState({
 
         _start: 0,
         _limit: 30
 
     });
+
+
     const [isScroll, setIsScroll] = useState(false);
     useEffect(() => {
 
@@ -74,7 +79,8 @@ function Product({ TypeProducts = null, headerTitle }) {
         return () => {
 
             // setIsScroll(true);
-            dem.current++
+            dem.current++;
+
         }
 
 

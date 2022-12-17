@@ -1,0 +1,44 @@
+.cart-wrapper {
+
+    .cart__back {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        &__icon {
+            display: flex;
+            align-items: center;
+
+            svg {
+                font-size: 2.3rem;
+                color: var(--c_green_default);
+            }
+        }
+
+        &__title {
+
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--c_green_default);
+        }
+    }
+
+
+
+    .cart__main {}
+
+    .cart__main--info {}
+
+    .cart-icon {}
+
+    .cart-item {}
+
+    .cart-item-product-wrapper {}
+
+    .cart-item__product {}
+
+    .cart-item__control {}
+
+    .cart__main--form {}
+
+}

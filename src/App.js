@@ -5,6 +5,7 @@ import Home from './pages/home/Home';
 import Defaultayout from './layout/Defaultlayout/Defaultayout';
 import { publicRoutes } from './routes/routes';
 import { Fragment } from 'react';
+import { ScrollRestoration } from "react-router-dom";
 
 
 
@@ -20,7 +21,7 @@ function App() {
  <Routes>
 
 
-{console.log("render cua trang")}
+
 
 
 
@@ -34,10 +35,18 @@ function App() {
 
          }
 
+        
+         return( 
+         
+         
+       
+         
+       
+         <Route key={index} path={route.path} element={<Layout><route.element></route.element></Layout>} />
+         
+         
 
-         return( <Route key={index} path={route.path} element={<Layout><route.element></route.element></Layout>} />)
- 
-
+)
 
 })}
 

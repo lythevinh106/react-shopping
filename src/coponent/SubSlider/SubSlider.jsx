@@ -8,44 +8,15 @@ import TitleCart from '../TitleCart/TitleCart';
 import FormatPrice from '../../until/FormatPrice/FormatPrice';
 import PopperWrapper from '../PopperWapper/PopperWrapper';
 import ProductItem from '../Product/ProductItem/ProductItem';
+import { baseUrl } from '../../constanst/UrlContanst';
 
 
-const sliderProductImage = [
-    {
-        id: 1,
-        image: "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2022/04/08/image-removebg-preview-1.png"
-    },
-    {
-        id: 2,
-        image: "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2022/03/25/cam.png"
-    },
-    {
-        id: 3,
-        image: "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2022/04/08/image-removebg-preview-3.png"
-    },
-    {
-        id: 4,
-        image: "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2022/04/08/image-removebg-preview-1.png"
-    },
-    {
-        id: 5,
-        image: "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2022/03/25/cam.png"
-    },
-    {
-        id: 6,
-        image: "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2022/04/08/image-removebg-preview-3.png"
-    },
-    {
-        id: 7,
-        image: "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2022/04/08/image-removebg-preview-1.png"
-    },
-
-]
 
 
-function SubSlider(props) {
 
+function SubSlider({ otherProducts }) {
 
+    // console.log(otherProducts);
 
     const settingSlider = {
 
@@ -66,13 +37,16 @@ function SubSlider(props) {
             >
 
                 {console.log("render slide")}
-                {sliderProductImage.map((image) => {
+                {
 
 
-                    return (
-                        <div className="sub-slider-item-wrapper" key={image.id}>
+                    otherProducts.map((product) => {
 
-                            <PopperWrapper>
+
+                        return (
+                            <div className="sub-slider-item-wrapper" key={product.id}>
+
+                                {/* <PopperWrapper>
                                 <div className="sub-slider-item" >
                                     <div className="slider__img">
                                         <Image src={image.image} />
@@ -87,13 +61,24 @@ function SubSlider(props) {
                                         <div className="price--old">{FormatPrice(3000000)}</div>
                                     </div>
                                 </div>
+                      
+
+                            </PopperWrapper> */}
 
 
-                            </PopperWrapper>
-                        </div>
 
-                    )
-                })}
+
+                                <ProductItem sliderStyle title={product.name} id={product.id}
+
+
+
+                                    image={`${baseUrl}${product?.thumbnail?.formats?.thumbnail?.url}`}
+                                    newPrice={product.salePrice} oldPrice={product.originalPrice}
+                                />
+                            </div>
+
+                        )
+                    })}
             </Slider>
 
         </div>

@@ -8,6 +8,9 @@ import GlobalStyles from './coponent/GlobalStyles/GlobalStyles';
 import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
+import ScrollToTop from './coponent/ScrollToTop.js/ScrollToTop';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
@@ -30,9 +33,14 @@ root.render(
             />   
      <ToastContainer />
 
-        
+     <ScrollToTop/>
+
+        <Provider store={store}>
             <App />
+
+         </Provider>
     </GlobalStyles>
+    {/* <ScrollRestoration/> */}
       </BrowserRouter>
   //  </React.StrictMode>
 
