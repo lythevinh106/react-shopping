@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import "./style.scss"
 import Image from '../../Image/Image';
@@ -6,13 +6,12 @@ import Button from '../../Button/Button';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 
 import InputField from "../../Form/InputField/InputField"
-import PopperWrapper from '../../PopperWapper/PopperWrapper';
 import ControlOrder from '../../ControlOrder/ControlOrder';
-import { useForm } from 'react-hook-form';
 
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
+
+
 import FormatPrice from '../../../until/FormatPrice/FormatPrice';
+import FormPayment from '../../FormPayment/FormPayment';
 ProductInfoPayment.propTypes = {
 
 };
@@ -26,67 +25,61 @@ function ProductInfoPayment({ productInFo }) {
 
     const [orderNumber, setOrderNumber] = useState(1)
 
-
-    yup.setLocale(
-        {
-
-            string: {
-                required: ' ${path} không được bỏ trống',
-            }
-        }
-    )
-
-    const schema = yup.object({
-        email: yup.string().email("vui lòng nhập đúng định dạng email").required("không được bỏ trống trường này"),
-        name: yup.string().required("không được bỏ trống trường này"),
-        phone: yup.string().required().matches(/(((\+|)84)|0)(3|5|7|8|9)+([0-9]{8})\b/, 'Số Điện Thoại không đúng định dạng'),
-        address: yup.string().min(6, "địa chỉ quá ngắn").required("không được bỏ trống trường này"),
-        note: yup.string().min(6, "ghi chú quá ngắn").required("không được bỏ trống trường này"),
-
-
-
-    }).required();
-
-
-
-
-
-
-    const form = useForm({
-
-        defaultValues: {
-            name: '',
-            phone: '',
-            email: '',
-            address: '',
-            note: ''
-
-
-
-        },
-        resolver: yupResolver(schema)
-
-    });
-
-    const { register, handleSubmit, watch, formState: { errors } } = form
-
-
-
-
-
-
-    const onSubmit = (data) => {
-
-
-        console.log(data)
-
-        // notify();
-
-    }
     const handleControlOrderChange = (data) => {
         setOrderNumber(data);
 
     }
+
+    const [valueInput, setValueInput] = useState(1);
+    const handleBtnLessOnClick = () => {
+
+        if (valueInput <= 1) return;
+
+        setValueInput((prev) => {
+
+
+            return prev - 1;
+        })
+    }
+
+    const handleBtnPlusOnClick = () => {
+
+        if (valueInput >= 10) return;
+
+        setValueInput((prev) => {
+
+
+            return prev + 1;
+        })
+    }
+
+    useEffect(() => {
+
+        const handleChange = () => {
+            // form.setValue("order", valueInput);
+
+            handleControlOrderChange(valueInput)
+
+        }
+        handleChange();
+    }, [valueInput]);
+
+
+
+
+    const handleOnSubmit = (data) => {
+
+
+        const newDataForm = {
+            ...data,
+            number: orderNumber
+        }
+
+        console.log(newDataForm);
+
+
+    }
+
 
     return (
         <div className='product-info-payment'>
@@ -129,13 +122,27 @@ function ProductInfoPayment({ productInFo }) {
 
 
 
-                    <ControlOrder
+                    {/* <ControlOrder
                         name="order" type="number"
                         form={form} value="1"
                         onChange={handleControlOrderChange}
 
 
-                    />
+                    /> */}
+
+
+
+                    <ControlOrder
+                        btnLessOnClick={handleBtnLessOnClick}
+                        btnPlusOnClick={handleBtnPlusOnClick}
+                    >
+                        <input
+                            name="order"
+                            // {...form?.register("order")}
+                            value={valueInput}
+                            readOnly
+                        />
+                    </ControlOrder>
 
 
 
@@ -144,110 +151,9 @@ function ProductInfoPayment({ productInFo }) {
 
 
 
-                <form
-                    onSubmit={form.handleSubmit(onSubmit)}
-
-
-                    className="product-main__form">
-                    <div className="form-row w-12">
-                        <div className="form-label">
-                            Họ Và Tên
-                        </div>
-                        <div className="form-input">
-
-                            <InputField bgGrey
-
-                                name="name"
-                                placeholder="Họ Và Tên" error={errors?.name?.message}
-                                form={form}
-                            />
-
-                        </div>
-
-                    </div>
-
-                    <div className="form-row w-6">
-                        <div className="form-label">
-                            Điện Thoại
-                        </div>
-                        <div className="form-input ">
-
-                            <InputField bgGrey
-                                name="phone"
-                                error={errors?.phone?.message}
-                                form={form}
-                                placeholder="Điện Thoại"
-                            />
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div className="form-row w-6">
-                        <div className="form-label">
-                            Email
-                        </div>
-                        <div className="form-input ">
-
-                            <InputField bgGrey
-
-                                name="email"
-                                placeholder="Email" error={errors?.email?.message}
-                                form={form}
-
-                            />
-
-                        </div>
-
-                    </div>
-
-
-                    <div className="form-row w-12">
-                        <div className="form-label">
-                            Địa Chỉ Nhận Hàng
-                        </div>
-                        <div className="form-input ">
-
-                            <InputField bgGrey
-                                name="address"
-                                error={errors?.address?.message}
-                                form={form}
-
-                                Comp="textarea"
-                                placeholder="Địa Chỉ"
-                            />
-
-                        </div>
-
-                    </div>
-
-                    <div className="form-row w-12">
-                        <div className="form-label">
-                            Ghi CHú
-                        </div>
-                        <div className="form-input ">
-
-                            <InputField bgGrey
-                                name="note"
-                                error={errors?.note?.message}
-                                form={form}
-                                Comp="textarea"
-                                placeholder="Ghi Chú"
-                            />
-
-                        </div>
-
-                    </div>
-
-                    <div className="product-main__btn">
-
-                        <Button type='submit'>  Tiến Hành Đặt Hàng</Button>
-
-
-                    </div>
-                </form>
+                <div className="product-main-form">
+                    <FormPayment onSubmit={handleOnSubmit} />
+                </div>
 
             </div >
 

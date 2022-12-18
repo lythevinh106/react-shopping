@@ -142,10 +142,7 @@
         // overflow: hidden;
       }
 
-      &__btn {
-        // display: none;
 
-      }
 
       &__price {
         font-family: inherit;
@@ -181,6 +178,45 @@
 
 
 
+  }
+
+  &.cart-style {
+
+    margin: unset;
+    width: unset;
+
+    .product-item__btn {
+      display: none;
+
+    }
+
+
+    .product-item__price {
+      font-family: inherit;
+
+
+
+
+
+      .price--old {
+        flex: 1;
+        font-size: 2.4rem;
+        text-decoration: line-through;
+
+
+      }
+
+
+      .price--new {
+        flex: 1;
+        font-size: 2.6rem;
+        color: var(--c_red-default);
+
+      }
+
+
+
+    }
   }
 }
 

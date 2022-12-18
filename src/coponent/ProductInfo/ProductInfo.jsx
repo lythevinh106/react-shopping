@@ -17,6 +17,7 @@ function ProductInfo(product) {
 
     } = product.product;
 
+    
     // const productInfoCenter = {
     //     originalPrice,
     //     salePrice,

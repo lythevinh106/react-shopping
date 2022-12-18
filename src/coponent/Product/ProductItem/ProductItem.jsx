@@ -18,7 +18,8 @@ ProductItem.propTypes = {
 
 };
 
-function ProductItem({ image, title = 0, oldPrice = 0, newPrice = 0, id = 0, sliderStyle = false }) {
+function ProductItem({ image, title = 0, oldPrice = 0, newPrice = 0, id = 0, sliderStyle = false,
+    cartStyle = false }) {
 
 
 
@@ -67,7 +68,8 @@ function ProductItem({ image, title = 0, oldPrice = 0, newPrice = 0, id = 0, sli
 
     const classnames = cln("product-item-wrapper", {
 
-        "slider-style": sliderStyle
+        "slider-style": sliderStyle,
+        "cart-style": cartStyle
 
     })
 
