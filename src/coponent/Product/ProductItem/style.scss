@@ -185,6 +185,12 @@
     margin: unset;
     width: unset;
 
+    .product-item__img {
+      width: 170px;
+      height: 220px;
+
+    }
+
     .product-item__btn {
       display: none;
 
@@ -200,7 +206,7 @@
 
       .price--old {
         flex: 1;
-        font-size: 2.4rem;
+        font-size: 1.6rem;
         text-decoration: line-through;
 
 
@@ -209,7 +215,7 @@
 
       .price--new {
         flex: 1;
-        font-size: 2.6rem;
+        font-size: 1.8rem;
         color: var(--c_red-default);
 
       }

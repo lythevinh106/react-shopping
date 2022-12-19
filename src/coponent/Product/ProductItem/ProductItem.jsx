@@ -11,39 +11,49 @@ import ApiProduct from '../../../ApiService/ApiProduct';
 import FormatPrice from '../../../until/FormatPrice/FormatPrice';
 
 import cln from "classnames"
-import { useDispatch } from 'react-redux';
+
 import { activeProgress } from '../../../features/progress/progressSlice';
+import { useSelector, useDispatch } from 'react-redux'
+import { addToCart } from '../../../features/Cart/CartSlice';
 
-ProductItem.propTypes = {
-
-};
 
 function ProductItem({ image, title = 0, oldPrice = 0, newPrice = 0, id = 0, sliderStyle = false,
     cartStyle = false }) {
 
-
-
-
-
+    const cartValue = useSelector((state) => state.cart.value);
     const dispatch = useDispatch();
 
 
 
 
 
-    const handleBtnCartOnClick = () => {
+
+
+
+
+    const handleBtnCartOnClick = (data) => {
 
 
         //////mo phong viec goi Api
         dispatch(activeProgress(true))
         setTimeout(() => {
             dispatch(activeProgress(false))
+
+            handleAddToCar(data);
+
+
+
             notifyCart();
         }, 1000)
 
 
     }
 
+
+    const handleAddToCar = (data) => {
+        dispatch(addToCart(data))
+        // console.log(data)
+    }
 
     const handleNavigate = () => {
         return redirect(`/products/${id}`)
@@ -114,7 +124,17 @@ function ProductItem({ image, title = 0, oldPrice = 0, newPrice = 0, id = 0, sli
                             </Button>
                         </div>
                         <div className="product-btn-wrapper">
-                            <Button btnRed SizeNormal onClick={handleBtnCartOnClick}>
+                            <Button btnRed SizeNormal onClick={() => {
+                                handleBtnCartOnClick({
+                                    id,
+                                    product: {
+                                        oldPrice,
+                                        newPrice, image, title
+                                    },
+                                    quantity: 1,
+
+                                })
+                            }}>
                                 Giỏ Hàng
                             </Button>
 

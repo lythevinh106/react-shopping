@@ -14,59 +14,36 @@ import { number } from 'yup/lib/locale';
 import PopperWrapper from '../../coponent/PopperWapper/PopperWrapper';
 import FormatPrice from '../../until/FormatPrice/FormatPrice';
 import FormPayment from '../../coponent/FormPayment/FormPayment';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { removeItem, setQuantity } from '../../features/Cart/CartSlice';
+import { totalQuantity } from '../../features/Cart/selector'
 Cart.propTypes = {
 
 };
 
-const fakeApi = [
-    {
-        id: 1,
-        name: "Samsung Galaxy S24 Plus - 8GB/128GB - Chính hãng",
-        thumbnail: "https://cdn.hoanghamobile.com/i/productlist/ts/Uploads/2022/02/09/image-removebg-preview_637800437459949020.png",
-        originalPrice: 20000,
-        salePrice: 10000,
-        number: 2
-
-    },
-    {
-        id: 2,
-        name: "Samsung Galaxy S23 Plus - 8GB/128GB - Chính hãng",
-        thumbnail: "https://cdn.hoanghamobile.com/i/productlist/ts/Uploads/2022/02/09/image-removebg-preview_637800437459949020.png",
-        originalPrice: 12000,
-        salePrice: 11000,
-        number: 1
-
-    },
-    {
-        id: 3,
-        name: "Samsung Galaxy S23 Plus - 8GB/128GB - Chính hãng",
-        thumbnail: "https://cdn.hoanghamobile.com/i/productlist/ts/Uploads/2022/02/09/image-removebg-preview_637800437459949020.png",
-        originalPrice: 1999000,
-        salePrice: 213000,
-        number: 4
-
-    }
-]
 
 
 function Cart(props) {
     const navigate = useNavigate();
 
-    // const [close, setOpenProduct] = useState(true);
-    const initValue = fakeApi.map((product) => {
+    const cartItems = useSelector((state) => state.cart.cartItems);
+    // console.log(cartItems)
+
+    const initValue = cartItems.map((product) => {
 
         return {
             id: product.id,
-            number: product.number,
-            salePrice: product.salePrice,
-            originalPrice: product.originalPrice,
-            thumbnail: product.thumbnail,
-            name: product.name,
+            number: product.quantity,
+            salePrice: product.product.newPrice,
+            originalPrice: product.product.oldPrice,
+            thumbnail: product.product.image,
+            name: product.product.title,
         }
     })
 
     const [valueOrders, setValueOrders] = useState(initValue)
+
+    const dispatch = useDispatch();
 
 
     // console.log(valueOrders);
@@ -88,6 +65,9 @@ function Cart(props) {
                 ...newValue
             ]
         })
+
+
+        dispatch(removeItem(id));
 
 
 
@@ -115,6 +95,11 @@ function Cart(props) {
             [...newValue]
         )
 
+        const newItem = newValue.find((value) => value.id == productId)
+
+
+        dispatch(setQuantity(newItem));
+
 
     }
 
@@ -128,6 +113,9 @@ function Cart(props) {
         const newValue = [...valueOrders];
 
 
+
+
+
         newValue.forEach((value, index) => {
 
             if (value.id == productId) {
@@ -138,6 +126,16 @@ function Cart(props) {
         setValueOrders(
             [...newValue]
         )
+
+        const newItem = newValue.find((value) => value.id == productId)
+
+
+        dispatch(setQuantity(newItem));
+
+
+
+
+
 
     }
 
@@ -162,10 +160,12 @@ function Cart(props) {
 
 
     }
-
+    const cartTotalQuantity = useSelector(totalQuantity);
 
     return (
         <div className='cart-wrapper'>
+
+            {cartTotalQuantity};
             <div className="cart__back" onClick={handleCartBackClick}>
                 <span className='cart__back__icon'>
 

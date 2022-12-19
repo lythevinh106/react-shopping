@@ -9,7 +9,7 @@ PopperWrapper.propTypes = {
 
 };
 
-function PopperWrapper({ children, bigShadow, bgGrey = false }) {
+function PopperWrapper({ children, bigShadow, bgGrey = false, bubble = false }) {
 
 
 
@@ -18,7 +18,8 @@ function PopperWrapper({ children, bigShadow, bgGrey = false }) {
     return (
         <div className={cln("popper-wrapper", {
             "big-shadow": bigShadow,
-            "grey": bgGrey
+            "grey": bgGrey,
+            "bubble": bubble
 
         })}>
             {children}

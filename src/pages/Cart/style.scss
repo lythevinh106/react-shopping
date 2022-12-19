@@ -81,12 +81,13 @@
                 }
 
                 .cart-item__product {
-
+                    width: 100%;
                     display: flex;
                     justify-content: center;
                 }
 
                 .cart-item__control {
+                    width: 100%;
                     margin: 20px auto;
                     width: 115px;
                     display: flex;
@@ -113,6 +114,7 @@
                     &:nth-child(3) {}
 
                     &__price {
+
                         font-weight: bold;
                         color: var(--c_red-second);
                     }
