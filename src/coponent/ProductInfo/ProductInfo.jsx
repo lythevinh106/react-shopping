@@ -12,12 +12,12 @@ ProductInfo.propTypes = {
 
 function ProductInfo(product) {
 
-    const { name, originalPrice, salePrice, shortDescription, description, thumbnail
+    const { name, originalPrice, salePrice, shortDescription, description, thumbnail, id
 
 
     } = product.product;
 
-    
+
     // const productInfoCenter = {
     //     originalPrice,
     //     salePrice,
@@ -71,7 +71,9 @@ function ProductInfo(product) {
                                 originalPrice: originalPrice,
                                 salePrice: salePrice,
                                 shortDescription: shortDescription,
-                                description
+                                description,
+                                id,
+                                name
                             }
                         }
                     // originalPrice={originalPrice} salePrice={salePrice}

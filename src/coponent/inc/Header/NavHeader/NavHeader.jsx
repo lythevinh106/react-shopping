@@ -13,6 +13,7 @@ import { RemoveAll, ToggleCart } from '../../../../features/Cart/CartSlice';
 import FormatPrice from '../../../../until/FormatPrice/FormatPrice';
 
 import emptyCart from "./../../../../storage/images/istockphoto-861576608-612x612.jpg"
+import { totalPrice, totalQuantity } from '../../../../features/Cart/selector';
 NavHeader.propTypes = {
 
 };
@@ -30,6 +31,8 @@ function NavHeader(props) {
 
     const [showCart, setShowCart] = useState(isMiniCart);
     const [listItem, setListItem] = useState(cartItems);
+    const cartTotalQuantity = useSelector(totalQuantity);
+    const cartTotalPrice = useSelector(totalPrice);
 
 
     // console.log(cartItems);
@@ -69,14 +72,20 @@ function NavHeader(props) {
 
 
             </div>
-            <div className="header-nav__item" onMouseLeave={handleOnBlur} onMouseEnter={handleOnMouseEnter}>
+
+            <div className="header-nav__item item--cart" onMouseLeave={handleOnBlur} onMouseEnter={handleOnMouseEnter}>
+                <div className="item--cart-number">
+                    <span>  {cartTotalQuantity}</span>
+                </div>
                 <Link to="/cart"> <PopperWrapper> <NavHeaderItem icon={<ShoppingCartOutlined />} title="Giỏ Hàng" /></PopperWrapper></Link>
                 <div className="header-sub-cart" style={{
                     display: showCart === false ? "none" : ""
                 }}>
 
+
+
                     {listItem.length > 0 && (
-                        <PopperWrapper bubble>
+                        <PopperWrapper bubble >
                             <div className="header-sub-cart-wrapper">
                                 <div className="cart-main">
 
@@ -115,10 +124,10 @@ function NavHeader(props) {
 
                                 <div className="cart-total">
                                     <div className="cart-total__quantity">
-                                        Số Lượng: <span>19</span>
+                                        Số Lượng: <span>{cartTotalQuantity}</span>
                                     </div>
                                     <div className="cart-total__price" >
-                                        Tổng Tiền: <span>3500000000</span>
+                                        Tổng Tiền: <span>{FormatPrice(cartTotalPrice)}</span>
                                     </div>
                                 </div>
 

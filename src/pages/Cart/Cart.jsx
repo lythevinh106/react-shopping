@@ -16,7 +16,9 @@ import FormatPrice from '../../until/FormatPrice/FormatPrice';
 import FormPayment from '../../coponent/FormPayment/FormPayment';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem, setQuantity } from '../../features/Cart/CartSlice';
-import { totalQuantity } from '../../features/Cart/selector'
+import { totalPrice, totalQuantity } from '../../features/Cart/selector'
+
+import { activeProgress } from '../../features/progress/progressSlice';
 Cart.propTypes = {
 
 };
@@ -55,6 +57,8 @@ function Cart(props) {
 
     const handleBtnCloseOnClick = (id) => {
 
+
+
         const newValue = valueOrders.filter((value) => {
             return value.id !== id
         })
@@ -76,6 +80,7 @@ function Cart(props) {
 
 
     const handleBtnLessOnClick = (productId) => {
+        dispatch(activeProgress(true))
         const oldItemValue = valueOrders.find((value) => value.id == productId);
         // console.log(oldItemValue);
         if (oldItemValue.number <= 1)
@@ -101,12 +106,19 @@ function Cart(props) {
         dispatch(setQuantity(newItem));
 
 
+        setTimeout(() => {
+            dispatch(activeProgress(false))
+
+        }, 1000)
+
+
     }
 
     const handleBtnPlusOnClick = (productId) => {
+        dispatch(activeProgress(true))
 
         const oldItemValue = valueOrders.find((value) => value.id == productId);
-        // console.log(oldItemValue);
+
         if (oldItemValue.number >= 10)
             return;
 
@@ -132,7 +144,10 @@ function Cart(props) {
 
         dispatch(setQuantity(newItem));
 
+        setTimeout(() => {
+            dispatch(activeProgress(false))
 
+        }, 1000)
 
 
 
@@ -161,11 +176,13 @@ function Cart(props) {
 
     }
     const cartTotalQuantity = useSelector(totalQuantity);
+    const cartTotalPrice = useSelector(totalPrice);
+
 
     return (
         <div className='cart-wrapper'>
 
-            {cartTotalQuantity};
+            {/* {cartTotalPrice}; */}
             <div className="cart__back" onClick={handleCartBackClick}>
                 <span className='cart__back__icon'>
 
@@ -277,7 +294,7 @@ function Cart(props) {
 
                             Tổng giá Trị:  <span className='cart-total--item__price'>  {
 
-                                FormatPrice(TotalPrice)
+                                FormatPrice(cartTotalPrice)
 
                             }</span>
                         </div>
@@ -286,7 +303,7 @@ function Cart(props) {
                         </div>
 
                         <div className="cart-total--item">
-                            Tổng Thanh Toán <span className='cart-total--item__price'>{FormatPrice(TotalPrice)}</span>
+                            Tổng Thanh Toán <span className='cart-total--item__price'>{FormatPrice(cartTotalPrice)}</span>
                         </div>
                     </div>
 

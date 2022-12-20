@@ -127,7 +127,10 @@
             }
 
 
+
+
         }
+
 
 
     }
@@ -156,4 +159,26 @@
         }
     }
 
+
+
+}
+
+.btn-cart-modal {
+
+
+    padding: 20px;
+
+
+
+    &__title {
+        text-align: center;
+        font-size: 1.7rem;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+
+    &__detail {
+        width: 300px;
+
+    }
 }

@@ -5,8 +5,29 @@ const allCartItem = (state) => state.cart.cartItems;
 
 export const totalQuantity = createSelector(
     allCartItem,
-    () => {
-        console.log("thay doi cart ve so luong")
+    (cart) => {
+
+        return cart.reduce((total, currentItem) => {
+            return total += currentItem.quantity
+        }, 0)
+
+    }
+
+)
+
+
+
+
+export const totalPrice = createSelector(
+    allCartItem,
+    (cart) => {
+
+
+
+        return cart.reduce((total, currentItem) => {
+            return total += (currentItem.product.newPrice) * (currentItem.quantity)
+        }, 0)
+
     }
 
 )
