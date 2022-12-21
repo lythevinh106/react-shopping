@@ -4,7 +4,11 @@ import { UserOutlined } from '@ant-design/icons';
 import "./style.scss"
 
 import cln from "classnames"
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+
+
+
 NavHeaderItem.propTypes = {
 
     title: PropTypes.string.isRequired,
@@ -24,20 +28,25 @@ NavHeaderItem.defaultProps = {
 
 }
 
-function NavHeaderItem({ icon = <Fragment></Fragment>, title, catType = false, fontThin = false, onClick }) {
+function NavHeaderItem({ icon = <Fragment></Fragment>, title, catType = false, fontThin = false, notSlug = false,
 
-    // const handleOnclick = () => {
-
-    //     onClick(5)
-
-    // }
+    onClick = () => { } }) {
 
 
-    let navigate = useNavigate();
+
+
+
+
+
+
+
+    // let navigate = useNavigate();
 
 
     const handleOnClick = () => {
-        navigate("category");
+
+        onClick(title)
+
     }
 
 
@@ -63,7 +72,12 @@ function NavHeaderItem({ icon = <Fragment></Fragment>, title, catType = false, f
 
 
     return (
-        <li className={classes} {...props}>
+        <li
+
+            onClick={handleOnClick}
+            className={classes} {...props}
+
+        >
             <span className="item_icon">
                 {icon}
             </span>

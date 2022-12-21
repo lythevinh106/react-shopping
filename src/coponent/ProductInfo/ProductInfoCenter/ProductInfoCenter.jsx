@@ -209,11 +209,7 @@ function ProductInfoCenter({ productInfoCenter }) {
             </div>
 
             <div>
-                <Button
 
-                >
-                    Dashboard
-                </Button>
                 <Menu
                     id="basic-menu"
                     anchorEl={anchorEl}

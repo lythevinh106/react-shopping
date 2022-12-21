@@ -156,6 +156,7 @@ function CartLayout({ children }) {
 
 
             <div className="cart-layout__suggestion">
+
                 <SubSlider otherProducts={suggestionProduct} />
             </div>
 

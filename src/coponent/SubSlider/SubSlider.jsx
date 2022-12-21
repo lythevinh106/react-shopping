@@ -24,6 +24,8 @@ function SubSlider({ otherProducts }) {
         slidesToShow: 5,
         swipeToSlide: true,
         focusOnSelect: true,
+        autoplay: true,
+
 
     }
 

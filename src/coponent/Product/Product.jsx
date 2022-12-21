@@ -9,23 +9,28 @@ import Button from '../Button/Button';
 import { baseUrl } from '../../constanst/UrlContanst';
 import TitleCart from '../TitleCart/TitleCart';
 import ProgressHeader from '../../ProgressHeader/ProgressHeader';
+import { useDispatch } from 'react-redux';
+import { activeProgress } from '../../features/progress/progressSlice';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+
 Product.propTypes = {
 
 };
 
-function Product({ TypeProducts = null, headerTitle }) {
+function Product({ TypeProducts = null, headerTitle, isPagination = false, limit = 30, limitLoad = 15 }) {
 
 
     const [offSetHeight, setOffSetHeight] = useState(window.scrollY)
     const [products, setProducts] = useState([]);
 
-
+    const dispatch = useDispatch();
 
 
     const [loadMore, SetLoadMore] = useState({
 
         _start: 0,
-        _limit: 30
+        _limit: limit
 
     });
 
@@ -60,6 +65,9 @@ function Product({ TypeProducts = null, headerTitle }) {
         if (products.length < 0) {
             return
         }
+        dispatch(activeProgress(true));
+
+
 
 
         try {
@@ -71,10 +79,14 @@ function Product({ TypeProducts = null, headerTitle }) {
                 if (dem.current > 0) {
                     setIsScroll(true);
                 }
+
+                dispatch(activeProgress(false));
             })();
         } catch (error) {
 
         }
+
+
 
         return () => {
 
@@ -122,13 +134,17 @@ function Product({ TypeProducts = null, headerTitle }) {
 
             return {
                 ...prev,
-                _limit: prev._limit + 15
+                _limit: prev._limit + limitLoad
             }
         })
 
 
     }
+    const handlePaginationChange = (event, value) => {
 
+
+        console.log("handle  paginationchange", value)
+    }
 
 
 
@@ -176,11 +192,25 @@ function Product({ TypeProducts = null, headerTitle }) {
 
 
             <div className="product__load-more">
-                <Button btnWhite onClick={handleLoadMoreClick}>
-                    Xem thêm
-                </Button>
+
+
+                {
+                    isPagination == false ? <Button btnWhite onClick={handleLoadMoreClick}>  Xem thêm  </Button> :
+                        <span className='product_pagination'> <Stack spacing={2}>
+
+                            <Pagination page={1} count={10} defaultPage={1} color="primary" size='large' onChange={handlePaginationChange} />
+
+                        </Stack>
+                        </span>
+
+
+
+
+
+                }
+
             </div>
-        </div>
+        </div >
 
     );
 }

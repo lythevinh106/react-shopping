@@ -52,7 +52,7 @@ function Home(props) {
             <div className="home__product">
 
 
-                <Product headerTitle="TỔNG HỢP SẢN PHẨM " />
+                <Product headerTitle="TỔNG HỢP SẢN PHẨM " isPagination={false} />
                 {/* <Product headerTitle="SẢN PHẨM BÁN CHẠY" products={productsData} /> */}
             </div>
 

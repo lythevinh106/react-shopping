@@ -66,8 +66,26 @@
         // }
 
 
-        .slick-arrow {
-            background-color: red;
+
+    }
+
+    .slick-arrow {
+        z-index: 3;
+        width: 35px;
+        height: 35px;
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 50%;
+
+        &.slick-next {
+            position: absolute;
+            right: 7px;
         }
+
+        &.slick-prev {
+            position: absolute;
+            left: 7px;
+        }
+
+
     }
 }

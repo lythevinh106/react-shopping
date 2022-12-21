@@ -18,13 +18,15 @@ export const publicRoutes = [
     },
 
 
-    {
-        path: "/products",
-        element: Home,
-        // layout: null
+    // {
+    //     path: "/pro",
+    //     element: Home,
+    //     // layout: null
 
 
-    },
+    // }
+
+    ,
 
     {
         path: "/products/:productId",
@@ -42,7 +44,7 @@ export const publicRoutes = [
     },
 
     {
-        path: "/category/:categoryName",
+        path: "/:gggg",
         element: Category,
         layout: CategoryLayout
 

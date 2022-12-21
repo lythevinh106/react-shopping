@@ -77,7 +77,7 @@ function NavHeader(props) {
                 <div className="item--cart-number">
                     <span>  {cartTotalQuantity}</span>
                 </div>
-                <Link to="/cart"> <PopperWrapper> <NavHeaderItem icon={<ShoppingCartOutlined />} title="Giỏ Hàng" /></PopperWrapper></Link>
+                <Link to="/cart" > <PopperWrapper> <NavHeaderItem notSlug icon={<ShoppingCartOutlined />} title="Giỏ Hàng" /></PopperWrapper></Link>
                 <div className="header-sub-cart" style={{
                     display: showCart === false ? "none" : ""
                 }}>

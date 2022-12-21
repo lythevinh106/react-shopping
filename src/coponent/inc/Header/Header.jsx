@@ -9,6 +9,7 @@ import NavHeader from './NavHeader/NavHeader';
 import CatHeader from './CatHeader/CatHeader';
 import ProgressHeader from '../../../ProgressHeader/ProgressHeader';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 
@@ -37,11 +38,11 @@ function Header(props) {
             <ProgressHeader active={stateProgress} />
 
             <div className={cln("header-main")}  >
-                <div className="header-logo">
+                <Link className="header-logo" to={"/"}>
 
                     <img src={logo} alt="" />
 
-                </div>
+                </Link>
 
 
                 <SearchInput />
