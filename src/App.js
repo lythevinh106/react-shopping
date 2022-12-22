@@ -15,46 +15,56 @@ function App() {
   return (
 
 
-    
-
-    
- <Routes>
 
 
+
+    <Routes>
 
 
 
 
 
 
-     {publicRoutes.map((route,index)=>{
 
-         let Layout =route.layout || Defaultayout;
-         if(route.layout===null){
-               Layout=Fragment;
 
-         }
+      {publicRoutes.map((route, index) => {
 
-        
-         return( 
-         
-         
-       
-         
-       
-         <Route key={index} path={route.path} element={<Layout><route.element></route.element></Layout>} />
-         
-         
+        let Layout = route.layout || Defaultayout;
+        if (route.layout === null) {
+          Layout = Fragment;
 
-)
+        }
 
-})}
 
-       
-        {/* <Route path="users/*" element={<Users />} /> */}
- </Routes>
- 
-  
+        let LayoutMode = Fragment;
+
+        if (route.layoutMode) {
+          LayoutMode = route.layoutMode;
+
+        }
+
+
+
+        return (
+
+
+
+
+
+          <Route key={index} path={route.path}
+            element={<LayoutMode><Layout><route.element></route.element></Layout></LayoutMode>} />
+
+
+
+        )
+
+      })}
+
+
+      {/* <Route path="users/*" element={<Users />} /> */}
+    </Routes>
+
+
   );
 }
 

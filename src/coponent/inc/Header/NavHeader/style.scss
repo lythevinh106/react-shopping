@@ -71,12 +71,14 @@
 
         .header-sub-cart {
             position: absolute;
-            min-width: 650%;
+            min-width: 500%;
+
 
             background-color: var(--c_white_default);
             top: 115%;
             right: 0;
             z-index: 2;
+            // overflow: scroll;
 
 
             &::after {
@@ -86,8 +88,8 @@
                 width: 30%;
                 top: -15px;
                 right: 0;
-                background-color: transparent;
-                z-index: 3;
+                // background-color: red;
+                z-index: 5;
             }
 
             .header-sub-cart-wrapper {
@@ -95,6 +97,8 @@
 
 
                 .cart-main {
+                    max-height: 450px;
+                    overflow-y: scroll;
 
 
                     .cart-item {
@@ -123,7 +127,7 @@
 
 
                             font-weight: bold;
-                            font-size: 1.5rem;
+                            font-size: 1.3rem;
                             padding: 0 4px;
                         }
 

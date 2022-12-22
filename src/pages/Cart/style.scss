@@ -1,3 +1,29 @@
+.cart-empty {
+    width: 100%;
+    background-color: var(--c_white_default);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px 0;
+
+
+
+    &__image {
+        height: 500px;
+    }
+
+    &__title {
+        text-align: center;
+
+        width: 100%;
+        font-size: 3rem;
+        font-weight: bold;
+    }
+}
+
+
+
+
 .cart-wrapper {
 
     display: flex;

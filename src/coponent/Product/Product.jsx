@@ -157,7 +157,7 @@ function Product({ TypeProducts = null, headerTitle, isPagination = false, limit
             <div className="product-header">
 
 
-                <TitleCart title={headerTitle} />
+                <TitleCart title={headerTitle} btnOrange />
             </div>
 
             <div className='product-main'>
@@ -191,25 +191,26 @@ function Product({ TypeProducts = null, headerTitle, isPagination = false, limit
             </div >
 
 
-            <div className="product__load-more">
+
+            {
+                isPagination == false ? <div className="product__load-more">
+                    <Button btnWhite onClick={handleLoadMoreClick}>Xem thêm </Button>
+
+                </div> :
+                    <span className='product_pagination'> <Stack spacing={2}>
+
+                        <Pagination page={1} count={10} defaultPage={1} color="primary" size='large' onChange={handlePaginationChange} />
+
+                    </Stack>
+                    </span>
 
 
-                {
-                    isPagination == false ? <Button btnWhite onClick={handleLoadMoreClick}>  Xem thêm  </Button> :
-                        <span className='product_pagination'> <Stack spacing={2}>
-
-                            <Pagination page={1} count={10} defaultPage={1} color="primary" size='large' onChange={handlePaginationChange} />
-
-                        </Stack>
-                        </span>
 
 
 
+            }
 
 
-                }
-
-            </div>
         </div >
 
     );

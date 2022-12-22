@@ -7,11 +7,13 @@ import Cart from '../pages/Cart/Cart';
 import CartLayout from '../layout/CartLayout/CartLayout';
 import Category from '../pages/Category/Category';
 import CategoryLayout from '../layout/CategoryLayout/CategoryLayout';
+import LayoutModeSnowEffect from '../coponent/LayoutModeSnowEffect/LayoutModeSnowEffect';
 
 export const publicRoutes = [
     {
         path: "/",
         element: Home,
+        // layoutMode: LayoutModeSnowEffect
         // layout: null
 
 
@@ -46,7 +48,8 @@ export const publicRoutes = [
     {
         path: "/:gggg",
         element: Category,
-        layout: CategoryLayout
+        layout: CategoryLayout,
+        layoutMode: LayoutModeSnowEffect
 
 
     },

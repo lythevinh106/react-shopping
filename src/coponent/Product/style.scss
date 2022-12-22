@@ -29,8 +29,17 @@
       justify-content: center;
       text-align: center;
 
-      .product_pagination {}
 
+
+   }
+
+   .product_pagination {
+      margin-top: 40px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: flex-end;
+      background-color: var(--c_white_default);
+      border-radius: 10px;
    }
 
 }

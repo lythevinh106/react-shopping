@@ -19,6 +19,9 @@ import { removeItem, setQuantity } from '../../features/Cart/CartSlice';
 import { totalPrice, totalQuantity } from '../../features/Cart/selector'
 
 import { activeProgress } from '../../features/progress/progressSlice';
+
+import emptyImage from "./../../storage/images/istockphoto-861576608-612x612.jpg"
+import Image from '../../coponent/Image/Image';
 Cart.propTypes = {
 
 };
@@ -30,6 +33,7 @@ function Cart(props) {
 
     const cartItems = useSelector((state) => state.cart.cartItems);
     // console.log(cartItems)
+
 
     const initValue = cartItems.map((product) => {
 
@@ -47,6 +51,12 @@ function Cart(props) {
 
     const dispatch = useDispatch();
 
+
+    useEffect(() => {
+
+        setValueOrders(initValue);
+
+    }, [cartItems])
 
     // console.log(valueOrders);
     const handleCartBackClick = () => {
@@ -180,151 +190,173 @@ function Cart(props) {
 
 
     return (
-        <div className='cart-wrapper'>
-
-            {/* {cartTotalPrice}; */}
-            <div className="cart__back" onClick={handleCartBackClick}>
-                <span className='cart__back__icon'>
-
-                    <ArrowBackIosIcon />
-
-                </span>
-
-                <div className="cart__back__title">
-                    Quay Lại
-                </div>
-            </div>
-
-            <div className="cart__main">
-
-                <div className="cart__main--info" >
-
-
-                    <div className="cart-icon">
-                        <CheckCircleIcon />
+        <>
+            {cartTotalQuantity <= 0
+                ? <div className='cart-empty'>
+                    <div className="cart-empty__title">
+                        Giỏ Hàng Trống
+                    </div>
+                    <div className="cart-empty__image">
+                        <Image src={emptyImage} />
                     </div>
 
 
 
 
 
+                </div>
 
 
 
-                    {valueOrders.map((product) => {
+                :
 
-                        return (
-                            <div className={cln(
-                                "cart-item", {
-                                // "hidden": !openProduct
-                            }
-                            )}
-                                key={product.id}
-                            >
+                <div className='cart-wrapper'>
 
-                                <div className="cart__btn-close">
-                                    <Button rounded btnRed
-                                        onClick={() => { handleBtnCloseOnClick(product.id) }}
-                                    >
-                                        <CloseIcon />
-                                    </Button>
+                    {/* {cartTotalPrice}; */}
+                    <div className="cart__back" onClick={handleCartBackClick}>
+                        <span className='cart__back__icon'>
 
+                            <ArrowBackIosIcon />
 
-                                </div>
+                        </span>
 
+                        <div className="cart__back__title">
+                            Quay Lại
+                        </div>
+                    </div>
 
+                    <div className="cart__main">
+
+                        <div className="cart__main--info" >
 
 
-
-
-
-
-                                <div className="cart-item-product-wrapper">
-                                    <div className="cart-item__product">
-
-
-
-
-
-
-                                        <ProductItem cartStyle
-                                            oldPrice={product.originalPrice * product.number}
-
-
-                                            newPrice={
-                                                product.salePrice * product.number
-
-                                            }
-
-                                            image={product.thumbnail}
-                                            title={product.name}
-                                            id={product.id}
-                                        />
-                                    </div>
-                                    <div className="cart-item__control">
-                                        <ControlOrder
-                                            btnLessOnClick={() => handleBtnLessOnClick(product.id)}
-                                            btnPlusOnClick={() => handleBtnPlusOnClick(product.id)}
-
-                                        >
-
-                                            <input
-                                                readOnly
-
-                                                value={product.number}
-
-
-
-                                            />
-                                        </ControlOrder>
-                                    </div>
-                                </div>
-
-
-
+                            <div className="cart-icon">
+                                <CheckCircleIcon />
                             </div>
-                        )
-                    })}
 
 
 
 
-                    <div className="cart-total">
-                        <div className="cart-total--item">
 
-                            Tổng giá Trị:  <span className='cart-total--item__price'>  {
 
-                                FormatPrice(cartTotalPrice)
 
-                            }</span>
+
+                            {valueOrders.map((product) => {
+
+                                return (
+                                    <div className={cln(
+                                        "cart-item", {
+                                        // "hidden": !openProduct
+                                    }
+                                    )}
+                                        key={product.id}
+                                    >
+
+                                        <div className="cart__btn-close">
+                                            <Button rounded btnRed
+                                                onClick={() => { handleBtnCloseOnClick(product.id) }}
+                                            >
+                                                <CloseIcon />
+                                            </Button>
+
+
+                                        </div>
+
+
+
+
+
+
+
+
+                                        <div className="cart-item-product-wrapper">
+                                            <div className="cart-item__product">
+
+
+
+
+
+
+                                                <ProductItem cartStyle
+                                                    oldPrice={product.originalPrice * product.number}
+
+
+                                                    newPrice={
+                                                        product.salePrice * product.number
+
+                                                    }
+
+                                                    image={product.thumbnail}
+                                                    title={product.name}
+                                                    id={product.id}
+                                                />
+                                            </div>
+                                            <div className="cart-item__control">
+                                                <ControlOrder
+                                                    btnLessOnClick={() => handleBtnLessOnClick(product.id)}
+                                                    btnPlusOnClick={() => handleBtnPlusOnClick(product.id)}
+
+                                                >
+
+                                                    <input
+                                                        readOnly
+
+                                                        value={product.number}
+
+
+
+                                                    />
+                                                </ControlOrder>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                )
+                            })}
+
+
+
+
+                            <div className="cart-total">
+                                <div className="cart-total--item">
+
+                                    Tổng giá Trị:  <span className='cart-total--item__price'>  {
+
+                                        FormatPrice(cartTotalPrice)
+
+                                    }</span>
+                                </div>
+                                <div className="cart-total--item">
+                                    Giảm Giá:0
+                                </div>
+
+                                <div className="cart-total--item">
+                                    Tổng Thanh Toán <span className='cart-total--item__price'>{FormatPrice(cartTotalPrice)}</span>
+                                </div>
+                            </div>
+
+
+
                         </div>
-                        <div className="cart-total--item">
-                            Giảm Giá:0
-                        </div>
 
-                        <div className="cart-total--item">
-                            Tổng Thanh Toán <span className='cart-total--item__price'>{FormatPrice(cartTotalPrice)}</span>
+                    </div>
+
+                    <div className="cart__main--form" >
+                        <div className="cart__main--form__title">
+
+                            Thông Tin Đặt Hàng
                         </div>
+                        <div className="cart__main--form__info"> <FormPayment onSubmit={handleOnSubmit} /></div>
+
                     </div>
 
 
 
                 </div>
-
-            </div>
-
-            <div className="cart__main--form" >
-                <div className="cart__main--form__title">
-
-                    Thông Tin Đặt Hàng
-                </div>
-                <div className="cart__main--form__info"> <FormPayment onSubmit={handleOnSubmit} /></div>
-
-            </div>
-
-
-
-        </div>
+            }
+        </>
     );
 }
 
