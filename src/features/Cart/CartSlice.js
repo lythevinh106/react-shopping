@@ -12,7 +12,11 @@ const initialState = JSON.parse(localStorage.getItem('cart'));
 
 export const cartSlice = createSlice({
     name: 'counter',
-    initialState,
+    initialState: {
+        showMiniCart: false,
+
+        cartItems: []
+    },
     reducers: {
         increment: (state) => {
 

@@ -9,6 +9,9 @@ MenuResultItem.propTypes = {
 };
 
 function MenuResultItem({ product, onClick }) {
+
+
+    // console.log(product);
     return (
         <li className='menu-result-item' onClick={() => {
 
@@ -17,17 +20,17 @@ function MenuResultItem({ product, onClick }) {
         }>
             <div className="img">
 
-                <Image className="img_inner" src={`${baseUrl}${product?.thumbnail?.formats?.thumbnail?.url}`} alt="" />
+                <Image className="img_inner" src={product?.image} alt="" />
             </div>
             <div className="info">
                 <p className="info__desc">
-                    {product.name}
+                    {product?.name}
                 </p>
 
                 <div className="info__price">
 
 
-                    {FormatPrice(product.salePrice)}
+                    {FormatPrice(product?.sale_price)}
                 </div>
             </div>
         </li>

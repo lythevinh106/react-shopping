@@ -8,11 +8,15 @@ import CartLayout from '../layout/CartLayout/CartLayout';
 import Category from '../pages/Category/Category';
 import CategoryLayout from '../layout/CategoryLayout/CategoryLayout';
 import LayoutModeSnowEffect from '../coponent/LayoutModeSnowEffect/LayoutModeSnowEffect';
+import LayoutModeLunarNewYear from '../coponent/LayoutModeLunarNewYear/LayoutModeLunarNewYear';
+import LayerNewYear from '../coponent/Layer/LayerNewYear';
 
 export const publicRoutes = [
     {
         path: "/",
         element: Home,
+        layoutMode: LayoutModeLunarNewYear,
+        layer: LayerNewYear
         // layoutMode: LayoutModeSnowEffect
         // layout: null
 
@@ -33,23 +37,29 @@ export const publicRoutes = [
     {
         path: "/products/:productId",
         element: DetailProduct,
-        layout: DetailProductLayout
+        layout: DetailProductLayout,
+        layoutMode: LayoutModeLunarNewYear,
+
 
 
     },
     {
         path: "/cart",
         element: Cart,
-        layout: CartLayout
+        layout: CartLayout,
+        layoutMode: LayoutModeLunarNewYear,
+
+
 
 
     },
 
     {
-        path: "/:gggg",
+        path: "/:category",
         element: Category,
         layout: CategoryLayout,
-        layoutMode: LayoutModeSnowEffect
+        layoutMode: LayoutModeSnowEffect,
+
 
 
     },

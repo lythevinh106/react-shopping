@@ -14,16 +14,7 @@ import { ScrollRestoration } from "react-router-dom";
 function App() {
   return (
 
-
-
-
-
     <Routes>
-
-
-
-
-
 
 
 
@@ -44,6 +35,13 @@ function App() {
         }
 
 
+        let Layer = Fragment;
+        if (route.layer) {
+          Layer = route.layer;
+
+        }
+
+
 
         return (
 
@@ -52,7 +50,7 @@ function App() {
 
 
           <Route key={index} path={route.path}
-            element={<LayoutMode><Layout><route.element></route.element></Layout></LayoutMode>} />
+            element={<Layer> <LayoutMode><Layout><route.element></route.element></Layout></LayoutMode></Layer>} />
 
 
 

@@ -9,7 +9,7 @@ MenuResult.propTypes = {
 
 function MenuResult({ products, input, onClick = () => { } }) {
 
-    console.log("products", products)
+    // console.log("products", products)
 
     const handleOnclick = (products) => {
 
@@ -19,26 +19,31 @@ function MenuResult({ products, input, onClick = () => { } }) {
     }
 
     return (
+
+
         <ul className='menu-result'>
 
-            < MenuResultItem product={products} onClick={handleOnclick} />
+            {/* < MenuResultItem product={products} onClick={handleOnclick} /> */}
+
+            {
+                products.length > 0 ? products.map((product) => {
+
+                    return (
+                        <MenuResultItem key={product.id} onClick={handleOnclick} product={product} />
+                    )
 
 
 
-            {/* { this is true code because  not have true Api 
 
-                products.map((product) => {
-                    < MenuResultItem product={product} />
-
-
-                })
-            } */}
+                }) : <h3>Không tìm thấy kết quả</h3>
+            }
 
 
 
 
 
         </ul>
+
     );
 }
 

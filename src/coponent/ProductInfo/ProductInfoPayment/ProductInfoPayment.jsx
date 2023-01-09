@@ -85,7 +85,7 @@ function ProductInfoPayment({ productInFo }) {
         <div className='product-info-payment'>
             <div className="product-info">
                 <div className="product-info__img">
-                    <Image src="asdd" />
+                    <Image src={productInFo.image} />
                 </div>
                 <div className="product-info__name">
                     {productInFo.name}
@@ -93,10 +93,10 @@ function ProductInfoPayment({ productInFo }) {
                 <div className="product-info__price">
                     <div className="new-price">
 
-                        {FormatPrice(productInFo.salePrice * orderNumber)}
+                        {FormatPrice(productInFo.sale_price * orderNumber)}
                     </div>
                     <div className="old-price">
-                        {FormatPrice(productInFo.originalPrice * orderNumber)}
+                        {FormatPrice(productInFo.origin_price * orderNumber)}
                     </div>
                 </div>
                 <div className="product-info__hotline">

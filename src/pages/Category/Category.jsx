@@ -4,6 +4,7 @@ import "./style.scss"
 import Product from '../../coponent/Product/Product';
 import PopperWrapper from '../../coponent/PopperWapper/PopperWrapper';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useParams } from 'react-router-dom';
 Category.propTypes = {
 
 };
@@ -100,6 +101,13 @@ function Category(props) {
 
     const [resultItem, setResultItem] = useState([]);
 
+
+    const linkParam = useParams();
+
+
+    console.log(linkParam.category);
+
+
     const handleOnHoverItem = (id) => {
 
 
@@ -189,7 +197,7 @@ function Category(props) {
 
             </div >
             <div className="category-product">
-                <Product headerTitle="smartTV" isPagination limit={15} />
+                <Product categorySlug={linkParam.category} headerTitle="smartTV" isPagination limit={10} />
             </div>
 
 

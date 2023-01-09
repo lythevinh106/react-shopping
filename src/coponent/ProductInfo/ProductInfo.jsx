@@ -10,12 +10,15 @@ ProductInfo.propTypes = {
 
 };
 
-function ProductInfo(product) {
-
-    const { name, originalPrice, salePrice, shortDescription, description, thumbnail, id
+function ProductInfo({ product, productImages }) {
 
 
-    } = product.product;
+
+    // console.log(productImages);
+    // const { name, originalPrice, salePrice, shortDescription, description, thumbnail, id
+
+
+    // } = product.product;
 
 
     // const productInfoCenter = {
@@ -30,7 +33,7 @@ function ProductInfo(product) {
     // console.log(productInfoCenter.salePrice)
 
 
-    const image = thumbnail?.thumbnail?.url;
+
 
 
 
@@ -52,30 +55,23 @@ function ProductInfo(product) {
         <div className='product-info-wrapper'>
 
             <div className="product__title">
-                {name}
+                {product.name}
             </div>
             <div className="product__main">
 
-                {/* chua xu li */}
+
                 <div className="product__main__slider">
 
-                    <ProductInfoSlider />
+                    <ProductInfoSlider images={productImages} />
 
                 </div>
 
                 <div className="product__main__center">
                     <ProductInfoCenter
 
-                        productInfoCenter={
-                            {
-                                originalPrice: originalPrice,
-                                salePrice: salePrice,
-                                shortDescription: shortDescription,
-                                description,
-                                id,
-                                name
-                            }
-                        }
+
+                        product={product}
+
                     // originalPrice={originalPrice} salePrice={salePrice}
                     // shortDescription={shortDescription}
 
@@ -94,7 +90,7 @@ function ProductInfo(product) {
 
 
                         <div className={cln("product__des__content", { active: showReadMore })}
-                            dangerouslySetInnerHTML={{ __html: description }}
+                            dangerouslySetInnerHTML={{ __html: product.description }}
                         >
 
 

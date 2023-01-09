@@ -14,45 +14,55 @@ import { activeProgress } from '../../features/progress/progressSlice';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
+
+import ProductApi from "./../../Service/ProductApi.js"
+import { useParams } from 'react-router-dom';
+
 Product.propTypes = {
 
 };
 
-function Product({ TypeProducts = null, headerTitle, isPagination = false, limit = 30, limitLoad = 15 }) {
+function Product({ categorySlug = null, headerTitle, isPagination = false, limit = 15, limitLoad = 15 }) {
 
+    const { category } = useParams();
 
     const [offSetHeight, setOffSetHeight] = useState(window.scrollY)
     const [products, setProducts] = useState([]);
+    const [infoPage, setInfoPage] = useState({
+        totalPage: 1,
+        currentPage: 1
+    });
 
     const dispatch = useDispatch();
 
 
     const [loadMore, SetLoadMore] = useState({
+        limit: category != undefined ? 15 : 30,
+        page: 1
 
-        _start: 0,
-        _limit: limit
+
 
     });
 
 
     const [isScroll, setIsScroll] = useState(false);
-    useEffect(() => {
+    // useEffect(() => {
 
-        const handleScroll = () => {
-
-
-            setOffSetHeight(window.scrollY);
+    //     const handleScroll = () => {
 
 
-        }
-
-        window.addEventListener("scroll", handleScroll);
+    //         setOffSetHeight(window.scrollY);
 
 
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        }
-    }, [])
+    //     }
+
+    //     window.addEventListener("scroll", handleScroll);
+
+
+    //     return () => {
+    //         window.removeEventListener("scroll", handleScroll);
+    //     }
+    // }, [])
 
 
 
@@ -67,16 +77,29 @@ function Product({ TypeProducts = null, headerTitle, isPagination = false, limit
         }
         dispatch(activeProgress(true));
 
-
-
-
         try {
             const getAllProduct = (async () => {
-                const response = await ApiProduct.getAllProduct(loadMore);
 
-                setProducts(response.data.data);
+
+                const response = categorySlug == null ?
+                    await ProductApi.getAllProduct(loadMore) :
+                    await ProductApi.getAllProduct({
+                        ...loadMore,
+                        limit: 10,
+                        slug_cat: categorySlug
+                    })
+
+
+                    ;
+
+                setProducts(response.data);
+                setInfoPage({
+                    currentPage: response.current_page,
+                    totalPage: response.last_page,
+                });
                 // console.log("ham chinh")
                 if (dem.current > 0) {
+
                     setIsScroll(true);
                 }
 
@@ -98,28 +121,25 @@ function Product({ TypeProducts = null, headerTitle, isPagination = false, limit
 
 
 
-    }, [loadMore]);
+    }, [loadMore, categorySlug, category]);
 
     // console.log("dât la render của load moare")
-    useEffect(() => {
+    // useEffect(() => {
 
-        if (isScroll === false) return;
-
-        // console.log("day la scroll")
-        window.scrollTo({
-
-            top: (offSetHeight + 800),
-            behavior: "smooth"
-        })
-        setIsScroll(false)
+    //     if (isScroll === false) return;
 
 
+    //     // console.log("day la scroll")
+    //     window.scrollTo({
 
-    }, [isScroll])
+    //         top: (offSetHeight + 800),
+    //         behavior: "smooth"
+    //     })
+    //     setIsScroll(false)
 
 
 
-
+    // }, [isScroll])
 
 
 
@@ -134,7 +154,7 @@ function Product({ TypeProducts = null, headerTitle, isPagination = false, limit
 
             return {
                 ...prev,
-                _limit: prev._limit + limitLoad
+                limit: prev.limit + limitLoad
             }
         })
 
@@ -142,8 +162,12 @@ function Product({ TypeProducts = null, headerTitle, isPagination = false, limit
     }
     const handlePaginationChange = (event, value) => {
 
+        SetLoadMore((prev) => {
+            return {
+                page: value
+            }
+        })
 
-        console.log("handle  paginationchange", value)
     }
 
 
@@ -168,12 +192,11 @@ function Product({ TypeProducts = null, headerTitle, isPagination = false, limit
                     products.map((product, index) => {
 
                         const productAtr = {
-                            image: `${baseUrl}${product.thumbnail?.url}`,
+                            image: product.image,
                             title: product.name,
-                            newPrice: product.salePrice,
-                            oldPrice: product.originalPrice,
+                            newPrice: product.sale_price,
+                            oldPrice: product.origin_price,
                             id: product.id
-
 
                         }
                         return (
@@ -198,8 +221,9 @@ function Product({ TypeProducts = null, headerTitle, isPagination = false, limit
 
                 </div> :
                     <span className='product_pagination'> <Stack spacing={2}>
-
-                        <Pagination page={1} count={10} defaultPage={1} color="primary" size='large' onChange={handlePaginationChange} />
+                        {/* {console.log(products)} */}
+                        <Pagination page={infoPage?.currentPage} count={infoPage?.totalPage} defaultPage={products.last_page}
+                            color="primary" size='large' onChange={handlePaginationChange} />
 
                     </Stack>
                     </span>

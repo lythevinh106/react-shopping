@@ -9,7 +9,8 @@ import "./style.scss";
 
 import ProductInfo from '../../coponent/ProductInfo/ProductInfo';
 import { useParams } from 'react-router-dom';
-import ApiProduct from '../../ApiService/ApiProduct';
+
+import ProductApi from '../../Service/ProductApi';
 
 DetailProduct.propTypes = {
 
@@ -30,6 +31,7 @@ DetailProduct.propTypes = {
 
 function DetailProduct(props) {
     const [product, setProduct] = useState({});
+    const [productImages, setProductImages] = useState([]);
 
     const linkParam = useParams();
 
@@ -43,14 +45,17 @@ function DetailProduct(props) {
 
             try {
 
-                const response = await ApiProduct.getProduct(productId);
+                const response = await ProductApi.showProduct(productId);
 
-                setProduct(response.data);
+                setProduct(response.data.product);
+                setProductImages(response.data.product_images);
 
-                // window.scrollTo({
-                //     top: 0,
-                //     behavior: "smooth"
-                // })
+                // console.log(response.data.product);
+
+                // // window.scrollTo({
+                // //     top: 0,
+                // //     behavior: "smooth"
+                // // })
 
 
             } catch (error) {
@@ -76,7 +81,7 @@ function DetailProduct(props) {
 
 
             <div className="detail-product__main" >
-                <ProductInfo product={product} />
+                <ProductInfo productImages={productImages} product={product} />
             </div>
 
 

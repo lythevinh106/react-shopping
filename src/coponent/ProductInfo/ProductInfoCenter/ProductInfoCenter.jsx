@@ -27,7 +27,7 @@ ProductInfoCenter.propTypes = {
 
 };
 
-function ProductInfoCenter({ productInfoCenter }) {
+function ProductInfoCenter({ product }) {
 
 
     // console.log(productInfoCenter);
@@ -39,9 +39,7 @@ function ProductInfoCenter({ productInfoCenter }) {
 
     const dispatch = useDispatch();
 
-    const { originalPrice,
-        salePrice,
-        shortDescription, } = productInfoCenter
+
 
     const handleOnClickBtnBuy = () => {
         setOpen(true)
@@ -87,11 +85,11 @@ function ProductInfoCenter({ productInfoCenter }) {
             <div className='info-center-wrapper'>
                 <div className="info--price">
                     <span className="info--price__new">
-                        {FormatPrice(salePrice)}
+                        {FormatPrice(product.sale_price)}
                     </span>
                     <span className="info--price__old">
 
-                        {FormatPrice(originalPrice)}
+                        {FormatPrice(product.origin_price)}
                     </span>
                 </div>
 
@@ -120,7 +118,7 @@ function ProductInfoCenter({ productInfoCenter }) {
                     <div className="info--desc--main">
 
 
-                        {shortDescription}
+                        {product.description}
 
                     </div>
 
@@ -128,13 +126,9 @@ function ProductInfoCenter({ productInfoCenter }) {
                 </div>
 
 
-                <ModalBuyNow productInfoCenter={productInfoCenter} open={open} onClick={handleModalClick} />
+                <ModalBuyNow productInfoCenter={product} open={open} onClick={handleModalClick} />
 
                 <div className="info--btn">
-
-
-
-
 
                     <div className="info--btn__buy">
                         <Button btnRed sizeBig onClick={handleOnClickBtnBuy}>
@@ -164,14 +158,14 @@ function ProductInfoCenter({ productInfoCenter }) {
                                 handleBtnAddCartOnClick(e, {
 
 
-                                    id: productInfoCenter.id,
+                                    id: product.id,
                                     product: {
-                                        oldPrice: productInfoCenter.originalPrice
+                                        oldPrice: product.origin_price
                                         ,
-                                        newPrice: productInfoCenter.salePrice
+                                        newPrice: product.sale_price
 
-                                        , image: "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2022/04/08/image-removebg-preview-3.png",
-                                        title: productInfoCenter.name
+                                        , image: product.image,
+                                        title: product.name
                                     },
                                     quantity: 1,
 

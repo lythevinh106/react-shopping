@@ -7,12 +7,14 @@ import Button from '../../../Button/Button';
 import { Popover, Spin, Tooltip } from 'antd';
 
 import MenuResult from '../MenuResult/MenuResult';
-import ApiProduct from '../../../../ApiService/ApiProduct';
+
 import PopperWrapper from '../../../PopperWapper/PopperWrapper';
 import Form from '../../../Form/Form';
 import InputField from '../../../Form/InputField/InputField';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import ProductApi from '../../../../Service/ProductApi';
+import useDebounce from '../../../../Hock/useDebounce';
 
 
 
@@ -33,31 +35,41 @@ function SearchInput(props) {
     const InputRef = useRef();
 
 
+    const debounced = useDebounce(InputValue, 500);
+
+
+
+    // console.log(debounced);
+
+
 
     useEffect(() => {
 
 
-        if (!InputValue.trim()) {
+        if (debounced.trim().length <= 0) {
+            // console.log("het chu")
             setOpentResult(false);
-            return
+
+            return;
         }
         setLoadSpin(true);
 
 
         const getAllApi = (async () => {
-            ////17139573
 
-            ///12753356
 
             try {
-                const response = await ApiProduct.getProduct(InputValue);
+                const response = await ProductApi.getAllProduct({
+                    search: debounced,
+                    limit: 5
+                });
                 if (response.data) {
                     let Product = response.data;
 
 
 
                     setOpentResult(true);
-                    console.log(Product)
+                    // console.log(Product)
                     setSearchResult(Product);
                 }
 
@@ -80,12 +92,14 @@ function SearchInput(props) {
         })();
 
 
-    }, [InputValue]);
+    }, [debounced]);
+
+    // console.log(InputValue);
     // console.log(loadSpin)
 
     const handleOnChange = (value) => {
 
-        console.log(value)
+        // console.log(value)
         setInputValue(value);
 
 
@@ -127,68 +141,71 @@ function SearchInput(props) {
 
                 <span className="header-search__input">
                     <PopperWrapper>
+                        {searchResult && (
+                            <Popover
 
-                        <Popover
+                                overlayClassName='header-search__result'
+                                content={() => {
 
-                            overlayClassName='header-search__result'
-                            content={() => {
-
-                                return (
-
-
-
-                                    <MenuResult onClick={handleMenuResultClick} products={searchResult} />
+                                    return (
 
 
 
-
-
-
-
-                                )
-
-                            }}
-
-                            trigger="click"
-                            open={opentResult}
-                        // open={open}
-                        // onOpenChange={handleOpenChange}
-                        >
+                                        <MenuResult onClick={handleMenuResultClick} products={searchResult} />
 
 
 
 
 
 
-                            <InputField
-                                ref={InputRef}
-                                placeholder='Hôm nay bạn cần tìm gì?'
 
+                                    )
 
-                                onChange={(e) => {
-                                    handleOnChange(e.target.value)
                                 }}
 
-                                name="header"
-
-                                form={form}
-
-
-
-
-
-                            />
+                                trigger="click"
+                                open={opentResult}
+                            // open={open}
+                            // onOpenChange={handleOpenChange}
+                            >
 
 
 
 
 
 
+                                <InputField
+                                    ref={InputRef}
+                                    placeholder='Hôm nay bạn cần tìm gì?'
+                                    onClick={() => {
 
-                        </Popover>
+                                        setOpentResult(false);
+                                    }}
+
+                                    onChange={(e) => {
+                                        handleOnChange(e.target.value)
+                                    }}
+
+                                    name="header"
+
+                                    form={form}
 
 
 
+
+
+                                />
+
+
+
+
+
+
+
+                            </Popover>
+
+
+                        )}
 
 
 
@@ -211,8 +228,8 @@ function SearchInput(props) {
 
 
 
+                <div className='spin-wrapper'> <Spin spinning={loadSpin} className='header-search__spin' /></div>
 
-                <Spin spinning={loadSpin} className='header-search__spin' />
 
             </div >
         </form>

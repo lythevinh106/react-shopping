@@ -44,8 +44,6 @@ function CategoryLayout({ children }) {
     return (
 
 
-
-
         <div className='category-layout-wrapper'>
             <Header />
 

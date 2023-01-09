@@ -34,7 +34,7 @@ const sliderProductImage = [
 ]
 
 
-function ProductInfoSlider(props) {
+function ProductInfoSlider({ images }) {
 
 
     const [nav1, setNav1] = useState();
@@ -47,8 +47,6 @@ function ProductInfoSlider(props) {
         setNav1(slider1.current);
         setNav2(slider2.current);
     }, [])
-
-
 
     const settingSlider1 = {
         dots: true,
@@ -64,12 +62,6 @@ function ProductInfoSlider(props) {
         ref: slider1,
         asNavFor: nav2,
 
-
-
-
-
-
-
     }
 
 
@@ -77,7 +69,7 @@ function ProductInfoSlider(props) {
         asNavFor: nav1,
         ref: slider2,
 
-        slidesToShow: 5,
+        slidesToShow: 4,
         swipeToSlide: true,
         focusOnSelect: true,
 
@@ -92,18 +84,15 @@ function ProductInfoSlider(props) {
                         {...settingSlider1}
 
                     >
-
-                        {sliderProductImage.map((image) => {
+                        {images.map((image) => {
 
 
                             return (
                                 <div key={image.id} >
-                                    <Image src={image.image} />
+                                    <Image src={image.name} />
                                 </div>
                             )
                         })}
-
-
                     </Slider>
                 </div>
 
@@ -111,12 +100,12 @@ function ProductInfoSlider(props) {
                     <Slider
                         {...settingSlider2}
                     >
-                        {sliderProductImage.map((image) => {
+                        {images.map((image) => {
 
 
                             return (
                                 <div key={image.id} className="slider__img">
-                                    <Image src={image.image} />
+                                    <Image src={image.name} />
                                 </div>
                             )
                         })}

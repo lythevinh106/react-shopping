@@ -4,7 +4,11 @@
 }
 
 .info-center-wrapper {
-    padding: 15px;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 15px 15px 0px 15px;
 
 
 
@@ -71,8 +75,9 @@
     }
 
     .info--btn {
-        margin-bottom: auto;
+
         display: flex;
+        margin-top: 30px;
         justify-content: space-around;
         // margin-top: 20px;
 
@@ -139,8 +144,12 @@
         margin: 15px 0px;
 
         text-align: center;
-        height: 300px;
-        overflow: scroll;
+        // min-height: 300px;
+        display: -webkit-box;
+        line-height: 2;
+        -webkit-line-clamp: 10;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
 
         &--title {
 
@@ -164,6 +173,7 @@
 }
 
 .btn-cart-modal {
+
 
 
     padding: 20px;

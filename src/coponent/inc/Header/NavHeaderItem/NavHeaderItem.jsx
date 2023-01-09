@@ -28,13 +28,10 @@ NavHeaderItem.defaultProps = {
 
 }
 
-function NavHeaderItem({ icon = <Fragment></Fragment>, title, catType = false, fontThin = false, notSlug = false,
+function NavHeaderItem({ icon = <Fragment></Fragment>, title, slug = "",
+    catType = false, fontThin = false, notSlug = false,
 
     onClick = () => { } }) {
-
-
-
-
 
 
 
@@ -45,7 +42,7 @@ function NavHeaderItem({ icon = <Fragment></Fragment>, title, catType = false, f
 
     const handleOnClick = () => {
 
-        onClick(title)
+        onClick(slug)
 
     }
 
