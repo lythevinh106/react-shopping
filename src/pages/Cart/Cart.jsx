@@ -15,9 +15,9 @@ import PopperWrapper from '../../coponent/PopperWapper/PopperWrapper';
 import FormatPrice from '../../until/FormatPrice/FormatPrice';
 import FormPayment from '../../coponent/FormPayment/FormPayment';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeItem, setQuantity } from '../../features/Cart/CartSlice';
+import { RemoveAll, removeItem, setQuantity } from '../../features/Cart/CartSlice';
 import { totalPrice, totalQuantity } from '../../features/Cart/selector'
-
+import { toast } from 'react-toastify';
 import { activeProgress } from '../../features/progress/progressSlice';
 
 import emptyImage from "./../../storage/images/istockphoto-861576608-612x612.jpg"
@@ -30,33 +30,61 @@ Cart.propTypes = {
 
 function Cart(props) {
     const navigate = useNavigate();
+    const [disabledSubmit, setDisabledSubmit] = useState(false)
 
     const cartItems = useSelector((state) => state.cart.cartItems);
     // console.log(cartItems)
 
 
-    const initValue = cartItems.map((product) => {
 
-        return {
-            id: product.id,
-            number: product.quantity,
-            salePrice: product.product.newPrice,
-            originalPrice: product.product.oldPrice,
-            thumbnail: product.product.image,
-            name: product.product.title,
-        }
-    })
+    const setInitValue = () => {
 
-    const [valueOrders, setValueOrders] = useState(initValue)
+
+
+
+        return cartItems.map((product) => {
+
+            return {
+                id: product.id,
+                number: product.quantity,
+                salePrice: product.product.newPrice,
+                originalPrice: product.product.oldPrice,
+                thumbnail: product.product.image,
+                name: product.product.title,
+            }
+        })
+
+    }
+
+
+
+    const [valueOrders, setValueOrders] = useState(setInitValue)
+    // const [valueInput, setValueInput] = useState([])
+
+
+
 
     const dispatch = useDispatch();
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        setValueOrders(initValue);
 
-    }, [cartItems])
+    //     const ValueChange = cartItems.map((product) => {
+
+    //         return {
+    //             id: product.id,
+    //             number: product.quantity,
+    //             salePrice: product.product.newPrice,
+    //             originalPrice: product.product.oldPrice,
+    //             thumbnail: product.product.image,
+    //             name: product.product.title,
+    //         }
+    //     })
+
+    //     setValueOrders(ValueChange);
+
+    // }, [cartItems])
 
     // console.log(valueOrders);
     const handleCartBackClick = () => {
@@ -93,8 +121,11 @@ function Cart(props) {
         dispatch(activeProgress(true))
         const oldItemValue = valueOrders.find((value) => value.id == productId);
         // console.log(oldItemValue);
-        if (oldItemValue.number <= 1)
+        if (oldItemValue.number <= 1) {
+            dispatch(activeProgress(false))
             return;
+        }
+
 
         const newValue = [...valueOrders];
 
@@ -125,17 +156,19 @@ function Cart(props) {
     }
 
     const handleBtnPlusOnClick = (productId) => {
+
         dispatch(activeProgress(true))
-
         const oldItemValue = valueOrders.find((value) => value.id == productId);
-
-        if (oldItemValue.number >= 10)
+        // console.log("old-item", oldItemValue);
+        if (oldItemValue.number >= 10) {
+            dispatch(activeProgress(false))
             return;
+        }
+
+
+
 
         const newValue = [...valueOrders];
-
-
-
 
 
         newValue.forEach((value, index) => {
@@ -145,12 +178,13 @@ function Cart(props) {
             }
         })
 
+        // console.log(newValue, productId);
         setValueOrders(
             [...newValue]
         )
 
         const newItem = newValue.find((value) => value.id == productId)
-
+        console.log(newItem);
 
         dispatch(setQuantity(newItem));
 
@@ -178,10 +212,43 @@ function Cart(props) {
     }, [valueOrders])
 
 
+    const notifyCart = () => toast.success('Đặt Hàng Thành Công Hãy Kiểm Tra Email Của Bạn!', {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        style: {
+            fontSize: 10,
+            fontWeight: "bold",
+            color: "#00483d",
 
+
+        }
+
+
+    });
     const handleOnSubmit = (data) => {
 
-        console.log(data)
+
+        // console.log(cartItems);
+
+
+
+        const newData = {
+            ...data,
+            cartInfo: cartItems
+
+        }
+
+        console.log(newData);
+
+
+        dispatch(RemoveAll());
+        notifyCart();
 
 
     }
@@ -242,6 +309,7 @@ function Cart(props) {
 
 
                             {valueOrders.map((product) => {
+                                // { console.log("number+id", product.number, product.id) }
 
                                 return (
                                     <div className={cln(
@@ -315,6 +383,7 @@ function Cart(props) {
                                     </div>
                                 )
                             })}
+                            {console.log("-----")}
 
 
 

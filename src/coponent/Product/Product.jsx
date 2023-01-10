@@ -16,7 +16,7 @@ import Stack from '@mui/material/Stack';
 
 
 import ProductApi from "./../../Service/ProductApi.js"
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 Product.propTypes = {
 
@@ -25,12 +25,22 @@ Product.propTypes = {
 function Product({ categorySlug = null, headerTitle, isPagination = false, limit = 15, limitLoad = 15 }) {
 
     const { category } = useParams();
+    let [searchParams, setSearchParams] = useSearchParams();
+
+
+    // console.log(searchParams.get("from"));
+    // console.log(searchParams.get("to"));
+
+    const filter = {
+
+    }
 
     const [offSetHeight, setOffSetHeight] = useState(window.scrollY)
     const [products, setProducts] = useState([]);
     const [infoPage, setInfoPage] = useState({
         totalPage: 1,
-        currentPage: 1
+        currentPage: 1,
+
     });
 
     const dispatch = useDispatch();
@@ -86,7 +96,10 @@ function Product({ categorySlug = null, headerTitle, isPagination = false, limit
                     await ProductApi.getAllProduct({
                         ...loadMore,
                         limit: 10,
-                        slug_cat: categorySlug
+                        slug_cat: categorySlug,
+                        from: searchParams.get("from") || 0,
+                        to: searchParams.get("to") || 100000000000000,
+                        sort: searchParams.get("sort") || "asc"
                     })
 
 
@@ -121,7 +134,7 @@ function Product({ categorySlug = null, headerTitle, isPagination = false, limit
 
 
 
-    }, [loadMore, categorySlug, category]);
+    }, [loadMore, categorySlug, category, searchParams]);
 
     // console.log("dât la render của load moare")
     // useEffect(() => {
@@ -187,7 +200,7 @@ function Product({ categorySlug = null, headerTitle, isPagination = false, limit
             <div className='product-main'>
 
 
-                {products && (
+                {products.length > 0 ?
 
                     products.map((product, index) => {
 
@@ -204,9 +217,9 @@ function Product({ categorySlug = null, headerTitle, isPagination = false, limit
 
                             <ProductItem key={product.id} {...productAtr} />
                         )
-                    })
+                    }) : <h3 className='not-found'>Không tìm Thấy Sản Phẩm Nào</h3>
 
-                )}
+                }
 
 
 

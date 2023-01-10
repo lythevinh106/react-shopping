@@ -97,7 +97,7 @@ function NavHeader(props) {
 
                                             return (<div className="cart-item" key={item.id}>
                                                 <div className="item__image">
-                                                    <Image src="https://cdn.hoanghamobile.com/i/productlist/ts/Uploads/2022/10/20/image-removebg-preview-25.png" />
+                                                    <Image src={item.product.image} />
                                                 </div>
                                                 <div className="item__title">
                                                     {item.product.title}

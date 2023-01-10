@@ -38,7 +38,7 @@ function SubSlider({ otherProducts }) {
                 {...settingSlider}
             >
 
-                {console.log("render slide")}
+                {/* {console.log("render slide")} */}
                 {
 
 
@@ -74,8 +74,8 @@ function SubSlider({ otherProducts }) {
 
 
 
-                                    image={`${baseUrl}${product?.thumbnail?.formats?.thumbnail?.url}`}
-                                    newPrice={product.salePrice} oldPrice={product.originalPrice}
+                                    image={product.image}
+                                    newPrice={product.sale_price} oldPrice={product.origin_price}
                                 />
                             </div>
 

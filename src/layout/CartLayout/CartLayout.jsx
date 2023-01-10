@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import "./style.scss"
 import Header from '../../coponent/inc/Header/Header';
@@ -6,6 +6,7 @@ import AboutUs from '../../coponent/AboutUs/AboutUs';
 import Contact from '../../coponent/Contact/Contact';
 import Footer from '../../coponent/inc/Footer/Footer';
 import SubSlider from '../../coponent/SubSlider/SubSlider';
+import ProductApi from '../../Service/ProductApi';
 CartLayout.propTypes = {
 
 };
@@ -136,6 +137,32 @@ const suggestionProduct =
     ];
 
 function CartLayout({ children }) {
+
+
+    const [randomProducts, setRandomProducts] = useState([]);
+
+
+
+
+
+
+    useEffect(() => {
+        (async () => {
+
+            const response = await ProductApi.getAllProduct({
+                random: true,
+                limit: 7
+            })
+
+
+
+            setRandomProducts(response.data);
+
+
+        })();
+
+
+    }, [])
     return (
         <div className='cart-layout'>
 
@@ -157,7 +184,7 @@ function CartLayout({ children }) {
 
             <div className="cart-layout__suggestion">
 
-                <SubSlider otherProducts={suggestionProduct} />
+                <SubSlider otherProducts={randomProducts} />
             </div>
 
 

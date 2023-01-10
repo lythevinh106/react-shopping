@@ -4,7 +4,8 @@ import "./style.scss"
 import Product from '../../coponent/Product/Product';
 import PopperWrapper from '../../coponent/PopperWapper/PopperWrapper';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+import queryString from 'query-string';
 Category.propTypes = {
 
 };
@@ -19,51 +20,61 @@ const filterItem = [
         filterWith:
             [
                 {
-                    name: "dưới 2 triệu",
+                    name: "dưới 500 nghìn ",
+                    from: 0,
+                    to: 500000,
                     id: 1,
                     idParent: 1
                 },
                 {
-                    name: "2-3 triệu",
+                    name: "từ 500 nghìn-1 triệu",
+                    from: 500000,
+                    to: 1000000,
                     id: 2,
                     idParent: 1
                 },
                 {
-                    name: "3-4 triệu",
-                    id: 4,
+                    name: "1-2 triệu",
+                    from: 1000000,
+                    to: 2000000,
+                    id: 3,
                     idParent: 1
                 }
                 ,
                 {
-                    name: "4-5 triệu",
-                    id: 5
+                    name: "2-3 triệu",
+                    from: 2000000,
+                    to: 3000000,
+                    id: 4
                     ,
                     idParent: 1
                 },
                 {
-                    name: "5-6 triệu",
+                    name: "từ 3-4 triệu",
+                    from: 3000000,
+                    to: 4000000,
+                    id: 5,
+
+
+
+                    idParent: 1
+                },
+                {
+                    name: "từ 4-5 triệu",
+                    from: 4000000,
+                    to: 5000000,
                     id: 6
                     ,
                     idParent: 1
                 },
                 {
-                    name: "6-7 triệu",
+                    name: "trên 5 triệu",
                     id: 7
                     ,
+                    from: 5000000,
                     idParent: 1
                 },
-                {
-                    name: "7-8 triệu",
-                    id: 8
-                    ,
-                    idParent: 1
-                },
-                {
-                    name: "8 triệu trở lên",
-                    id: 9
-                    ,
-                    idParent: 1
-                },
+
             ]
 
 
@@ -78,12 +89,14 @@ const filterItem = [
             [
                 {
                     name: "Thấp Tới Cao",
-                    id: 1
+                    id: 1,
+                    sort: "desc"
                     ,
                     idParent: 2
                 },
                 {
                     name: "Cao Tới Thấp",
+                    sort: "asc",
                     id: 2
                     ,
                     idParent: 2
@@ -101,11 +114,14 @@ function Category(props) {
 
     const [resultItem, setResultItem] = useState([]);
 
+    let [searchParams, setSearchParams] = useSearchParams();
 
+    let location = useLocation();
     const linkParam = useParams();
 
 
-    console.log(linkParam.category);
+
+
 
 
     const handleOnHoverItem = (id) => {
@@ -123,6 +139,37 @@ function Category(props) {
 
     const handleOnMouseLeave = () => {
         setResultItem([]);
+    }
+
+
+    const handleItemResultClick = (from, to, sort) => {
+
+        if (to) {
+
+            setSearchParams({
+                ...queryString.parse(location.search),
+                from: from,
+                to: to
+            });
+        } else {
+            setSearchParams({
+                ...queryString.parse(location.search),
+                from: from,
+
+            });
+        }
+
+
+        if (sort) {
+            setSearchParams({
+                ...queryString.parse(location.search),
+                sort: sort,
+
+            });
+
+        }
+
+
     }
 
     return (
@@ -180,6 +227,11 @@ function Category(props) {
                                     {resultItem && resultItem.map((item) => {
                                         return (
                                             <div key={item.id} className="result-item"
+
+                                                onClick={() => {
+
+                                                    handleItemResultClick(item?.from, item?.to, item?.sort)
+                                                }}
                                                 onMouseEnter={() => handleOnHoverItem(item.idParent)}>
 
 

@@ -71,6 +71,12 @@ function ProductItem({ image, title = 0, oldPrice = 0, newPrice = 0, id = 0, sli
         draggable: true,
         progress: undefined,
         theme: "light",
+        style: {
+            fontSize: "5px",
+            fontWeight: "bold",
+            color: "#00483d"
+
+        }
     });
 
 

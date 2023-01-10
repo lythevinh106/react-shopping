@@ -15,33 +15,36 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
 
-     <BrowserRouter>   
-     <GlobalStyles>
-        
-     <ToastContainer
-                position="top-right"
-                autoClose={2000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-                
-            />   
-     <ToastContainer />
+  <BrowserRouter>
+    <GlobalStyles>
 
-     <ScrollToTop/>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        style={{ fontSize: "14px", fontWeight: "bold" }}
 
-        <Provider store={store}>
-            <App />
 
-         </Provider>
+
+      />
+      <ToastContainer />
+
+      <ScrollToTop />
+
+      <Provider store={store}>
+        <App />
+
+      </Provider>
     </GlobalStyles>
     {/* <ScrollRestoration/> */}
-      </BrowserRouter>
+  </BrowserRouter>
   //  </React.StrictMode>
 
 

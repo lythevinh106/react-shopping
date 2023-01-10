@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import ProductApi from '../../../../Service/ProductApi';
 import useDebounce from '../../../../Hock/useDebounce';
+import { replace } from 'feather-icons';
 
 
 
@@ -113,7 +114,7 @@ function SearchInput(props) {
         InputRef.current.focus();
         InputRef.current.value = product.name
 
-        navigate(`products/${product.id}`);
+        navigate(`/products/${product.id}`, replace);
     }
 
 

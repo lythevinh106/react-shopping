@@ -16,19 +16,19 @@ FormPayment.propTypes = {
 function FormPayment({ onSubmit }) {
 
 
-    yup.setLocale(
-        {
+    // yup.setLocale(
+    //     {
 
-            string: {
-                required: ' ${path} không được bỏ trống',
-            }
-        }
-    )
+    //         string: {
+    //             required: ' ${path} không được bỏ trống',
+    //         }
+    //     }
+    // )
 
     const schema = yup.object({
         email: yup.string().email("vui lòng nhập đúng định dạng email").required("không được bỏ trống trường này"),
         name: yup.string().required("không được bỏ trống trường này"),
-        phone: yup.string().required().matches(/(((\+|)84)|0)(3|5|7|8|9)+([0-9]{8})\b/, 'Số Điện Thoại không đúng định dạng'),
+        phone: yup.string().required("không được bỏ trống trường này").matches(/(((\+|)84)|0)(3|5|7|8|9)+([0-9]{8})\b/, 'Số Điện Thoại không đúng định dạng'),
         address: yup.string().min(6, "địa chỉ quá ngắn").required("không được bỏ trống trường này"),
         note: yup.string().min(6, "ghi chú quá ngắn").required("không được bỏ trống trường này"),
 
@@ -168,7 +168,7 @@ function FormPayment({ onSubmit }) {
 
                 <div className="product-main__btn">
 
-                    <Button type='submit'>  Tiến Hành Đặt Hàng</Button>
+                    <Button type='submit' >  Tiến Hành Đặt Hàng</Button>
 
 
                 </div>

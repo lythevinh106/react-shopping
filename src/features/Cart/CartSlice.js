@@ -13,9 +13,9 @@ const initialState = JSON.parse(localStorage.getItem('cart'));
 export const cartSlice = createSlice({
     name: 'counter',
     initialState: {
-        showMiniCart: false,
+        showMiniCart: initialState.showMiniCart || false,
 
-        cartItems: []
+        cartItems: initialState.cartItems || []
     },
     reducers: {
         increment: (state) => {
@@ -89,10 +89,12 @@ export const cartSlice = createSlice({
 
 
 
-            const index = state.cartItems.findIndex((item) => {
+            const index = state.cartItems.findIndex((cart_item) => {
 
-                return item.id === item.id;
+                return cart_item.id === item.id;
             })
+
+            // console.log(index);
 
             if (index >= 0) {
                 state.cartItems[index].quantity = item.number
@@ -102,6 +104,8 @@ export const cartSlice = createSlice({
 
 
         },
+
+
 
 
 

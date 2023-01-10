@@ -29,6 +29,16 @@ const ProductApi = {
 
     },
 
+    showProductsOfCategory(category_id, param) {
+
+        return AxiosMain.get(`/product/ofCategory/${category_id}`, {
+            param
+        });
+
+
+
+    },
+
 
     // showProductsOfCategory(slug) {
 
