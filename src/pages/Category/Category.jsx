@@ -72,6 +72,8 @@ const filterItem = [
                     id: 7
                     ,
                     from: 5000000,
+
+                    to: 1000000000000,
                     idParent: 1
                 },
 

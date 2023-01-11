@@ -22,6 +22,7 @@ import { activeProgress } from '../../features/progress/progressSlice';
 
 import emptyImage from "./../../storage/images/istockphoto-861576608-612x612.jpg"
 import Image from '../../coponent/Image/Image';
+import CartApi from '../../Service/CartApi';
 Cart.propTypes = {
 
 };
@@ -67,24 +68,24 @@ function Cart(props) {
     const dispatch = useDispatch();
 
 
-    // useEffect(() => {
+    useEffect(() => {
 
 
-    //     const ValueChange = cartItems.map((product) => {
+        const ValueChange = cartItems.map((product) => {
 
-    //         return {
-    //             id: product.id,
-    //             number: product.quantity,
-    //             salePrice: product.product.newPrice,
-    //             originalPrice: product.product.oldPrice,
-    //             thumbnail: product.product.image,
-    //             name: product.product.title,
-    //         }
-    //     })
+            return {
+                id: product.id,
+                number: product.quantity,
+                salePrice: product.product.newPrice,
+                originalPrice: product.product.oldPrice,
+                thumbnail: product.product.image,
+                name: product.product.title,
+            }
+        })
 
-    //     setValueOrders(ValueChange);
+        setValueOrders(ValueChange);
 
-    // }, [cartItems])
+    }, [cartItems])
 
     // console.log(valueOrders);
     const handleCartBackClick = () => {
@@ -231,24 +232,64 @@ function Cart(props) {
 
 
     });
-    const handleOnSubmit = (data) => {
 
+
+
+    const notifyCart2 = () => toast.error('Đặt Hàng Không Thành Công Do lỗi', {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        style: {
+            fontSize: 10,
+            fontWeight: "bold",
+            color: "#00483d",
+
+
+        }
+
+
+    });
+    const handleOnSubmit = async (data) => {
+        dispatch(activeProgress(true))
 
         // console.log(cartItems);
+        const newCartInfo = [...cartItems];
+        const info = newCartInfo.map((cart) => {
+            return {
+                id: cart.id,
+                quantity: cart.quantity
+            }
 
+        })
 
 
         const newData = {
             ...data,
-            cartInfo: cartItems
+            cart_info: info
 
         }
 
-        console.log(newData);
 
 
-        dispatch(RemoveAll());
-        notifyCart();
+        const response = await CartApi.addCart(newData);
+        if (response?.original.status == 200) {
+            dispatch(RemoveAll());
+            notifyCart();
+        } else {
+            notifyCart2();
+        }
+
+
+
+
+        dispatch(activeProgress(false))
+
+
 
 
     }

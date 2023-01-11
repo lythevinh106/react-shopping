@@ -14,6 +14,9 @@ import FormatPrice from '../../../../until/FormatPrice/FormatPrice';
 
 import emptyCart from "./../../../../storage/images/istockphoto-861576608-612x612.jpg"
 import { totalPrice, totalQuantity } from '../../../../features/Cart/selector';
+
+import ModalWrapper from '../../../Modal/ModalWrapper';
+
 NavHeader.propTypes = {
 
 };
@@ -62,13 +65,32 @@ function NavHeader(props) {
         dispatch(RemoveAll());
     }
 
+
+
+
+    const [open, setOpen] = React.useState(false);
+
+
+    // const handleOpen = () => setOpen(true);
+    // const handleClose = () => setOpen(false);
+
+
+    const handleOpenModal = () => {
+        setOpen(true);
+    }
+
+
     return (
         <ul className="header-nav">
 
+            <ModalWrapper />
 
 
-            <div className="header-nav__item">
-                <Link to="/info"> <PopperWrapper>    <NavHeaderItem icon={<UserOutlined />} title="Thông Tin" onClick={handleClick} /></PopperWrapper></Link>
+
+            <div className="header-nav__item" onClick={handleOpenModal}>
+                <span > <PopperWrapper>
+                    <NavHeaderItem icon={<UserOutlined />} title="Đăng Nhập" onClick={handleClick} /></PopperWrapper>
+                </span>
 
 
             </div>
