@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import "./style.scss"
 import { ShoppingCartOutlined, UserOutlined } from '@ant-design/icons';
@@ -16,17 +16,20 @@ import emptyCart from "./../../../../storage/images/istockphoto-861576608-612x61
 import { totalPrice, totalQuantity } from '../../../../features/Cart/selector';
 
 import ModalWrapper from '../../../Modal/ModalWrapper';
+import FormRegister from '../../../Form/FormRegister/FormRegister';
+import FormLogin from '../../../Form/FormLogin/FormLogin';
+import AuthApi from '../../../../Service/Auth';
+import { toast } from 'react-toastify';
 
 NavHeader.propTypes = {
 
 };
 
 function NavHeader(props) {
-    const handleClick = () => {
 
 
-    }
 
+    // const modalRef = useRef();
 
     const isMiniCart = useSelector((state) => state.cart.showMiniCart);
     const cartItems = useSelector((state) => state.cart.cartItems);
@@ -66,30 +69,119 @@ function NavHeader(props) {
     }
 
 
+    const [isOpenModal, setIsOpenModal] = useState(false);
 
-
-    const [open, setOpen] = React.useState(false);
-
-
-    // const handleOpen = () => setOpen(true);
-    // const handleClose = () => setOpen(false);
-
+    const [isFormLogin, setFormLogin] = useState(true);
 
     const handleOpenModal = () => {
-        setOpen(true);
+        setIsOpenModal(true);
+
     }
+
+    const onCloseModal = () => {
+        setIsOpenModal(false);
+
+    }
+
+
+    const handleChangeFormRegister = () => {
+
+        setFormLogin(false);
+    }
+
+
+    const handleChangeFormLogin = () => {
+
+        setFormLogin(true);
+    }
+
+    const notify = () => toast.success(' đăng kí thành công - hãy kiểm tra email của bạn!', {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        style: {
+            fontSize: 10,
+            fontWeight: "bold",
+            color: "#00483d",
+
+
+        }
+    });
+
+
+    const notify2 = () => toast.error(' email của bạn đã có trong hệ thống vui lòng chọn email khác!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        style: {
+            fontSize: 10,
+            fontWeight: "bold",
+            color: "#00483d",
+
+
+        }
+
+    });
+    const handleRegisterSubmit = async (data) => {
+
+
+        const response = await AuthApi.register(data);
+
+        if (response.original.status == 203) {
+            notify2();
+            return;
+        }
+        if (response.original.status == 200) {
+            notify();
+
+            onCloseModal();
+        }
+
+        // if (response == 205) {
+
+        // }
+
+    }
+
+
+
 
 
     return (
         <ul className="header-nav">
 
-            <ModalWrapper />
+            <ModalWrapper open={isOpenModal} onClose={onCloseModal}
+                component={
+
+
+
+                    isFormLogin ? <FormLogin onChangeForm={handleChangeFormRegister} ></FormLogin>
+                        : <FormRegister onChangeForm={handleChangeFormLogin} onSubmit={handleRegisterSubmit} />
+
+
+
+
+
+                }
+
+            />
+
 
 
 
             <div className="header-nav__item" onClick={handleOpenModal}>
                 <span > <PopperWrapper>
-                    <NavHeaderItem icon={<UserOutlined />} title="Đăng Nhập" onClick={handleClick} /></PopperWrapper>
+                    <NavHeaderItem icon={<UserOutlined />} title="Đăng Nhập" /></PopperWrapper>
                 </span>
 
 
